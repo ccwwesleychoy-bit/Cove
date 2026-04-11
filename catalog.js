@@ -10,9 +10,9 @@ window.SHOP_CATALOG = [
   {
     id: "drift-iiii",
     name: "Cove Bloom",
-    description: "3 Fruity and Floral Selection x 3",
-    packs: 9,
-    price: 180,
+    description: "2 Fruity and Floral Selection x 5",
+    packs: 10,
+    price: 200,
     enabled: true,
   },
 ];
