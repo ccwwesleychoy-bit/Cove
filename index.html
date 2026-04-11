@@ -138,14 +138,16 @@
                   <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60">Cart</div>
                   <button id="btn-clear" type="button" class="text-[11px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors">Clear</button>
                 </div>
-                <div class="mt-6 grid grid-cols-2 gap-y-2 text-[12px] text-ink-60">
-                  <div>Packs</div><div id="cart-units" class="text-right tabular text-ink-95">0</div>
-                  <div>Subtotal</div><div id="cart-subtotal" class="text-right tabular text-ink-95">HK$0</div>
-                  <div>Shipping</div><div id="cart-shipping" class="text-right tabular text-ink-95">HK$0</div>
-                  <div>Total</div><div id="cart-total" class="text-right tabular text-ink-95">HK$0</div>
+                <div class="mt-6" id="cart-lines"></div>
+                <div class="mt-6 border-t border-ink-40 pt-6">
+                  <div class="grid grid-cols-2 gap-y-2 text-[12px] text-ink-60">
+                    <div>Packs</div><div id="cart-units" class="text-right tabular text-ink-95">0</div>
+                    <div>Subtotal</div><div id="cart-subtotal" class="text-right tabular text-ink-95">HK$0</div>
+                    <div>Shipping</div><div id="cart-shipping" class="text-right tabular text-ink-95">HK$0</div>
+                    <div>Total</div><div id="cart-total" class="text-right tabular text-ink-95">HK$0</div>
+                  </div>
+                  <div id="cart-ship-rule" class="mt-4 text-[11px] text-ink-60"></div>
                 </div>
-                <div id="cart-ship-rule" class="mt-4 text-[11px] text-ink-60"></div>
-                <div class="mt-6 border-t border-ink-40 pt-6" id="cart-lines"></div>
                 <div class="mt-8">
                   <button id="btn-checkout" type="button" class="w-full border border-ink-40 bg-ink-10 px-4 py-3 text-[12px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>Checkout</button>
                 </div>
@@ -165,12 +167,12 @@
           <div class="flex flex-col gap-6 font-heading text-[14px] leading-[1.65] tracking-[0.10em] text-ink-95/90">
             <div>COVE is about simple coffee, done well.</div>
             <div>
-              We choose quality single origin coffees and turn them into easy-to-brew drip bags.
+              We select quality single origin coffees and pack them into easy drip bags.
             </div>
             <div>
-              Just add hot water — and you can enjoy good coffee anywhere.
+              So you can enjoy a good cup in your own little cove — anywhere, anytime.
             </div>
-            <div>Simple. Pure. COVE.</div>
+            <div>Simple. Pure. Always COVE.</div>
           </div>
         </div>
       </section>
