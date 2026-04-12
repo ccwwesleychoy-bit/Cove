@@ -237,6 +237,12 @@
     if (btn) {
       btn.textContent = L === "zh-Hant" ? "EN" : "中";
       btn.setAttribute("aria-label", L === "zh-Hant" ? "Switch to English" : "切換為繁體中文");
+      btn.setAttribute(
+        "title",
+        L === "zh-Hant"
+          ? "切換為英文介面"
+          : "繁體中文請按此鈕，勿使用 Chrome／Edge「翻譯網頁」——會把 COVE 等字誤譯、版面變怪。"
+      );
     }
   }
 
