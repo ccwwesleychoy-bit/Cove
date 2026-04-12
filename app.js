@@ -502,15 +502,16 @@
     const sub = subtotal();
     const ship = shipping(sub);
     const grand = sub + ship;
-    let t = "";
+    let itemsBlock = "";
     for (const L of lines) {
-      const lineBody = `${L.product.name} × ${L.qty}  @ ${money(L.product.price)}  = ${money(
+      const dispName = isZh
+        ? pickName(L.product)
+        : String(L.product.name || "").trim();
+      itemsBlock += `${dispName} × ${L.qty}  @ ${money(L.product.price)}  = ${money(
         L.product.price * L.qty
       )}\n`;
-      t += lineBody;
     }
-    const itemsBlock = t;
-    t = "";
+    let t = "";
     if (isZh) {
       t += "訂單編號：" + state.orderId + "\n\n" + itemsBlock;
       t += `\n包數：${units}\n小計：${money(sub)}\n運費：${
