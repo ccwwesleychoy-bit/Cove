@@ -2,6 +2,10 @@
   "use strict";
 
   const cfg = window.SHOP_CONFIG || {};
+  const I18N = window.SHOP_I18N;
+  function tt(key) {
+    return I18N && I18N.t ? I18N.t(key) : key;
+  }
   const currency = cfg.currencyLabel || "HK$";
   const freeAtAmount = Number(cfg.freeShippingAtAmount || 220);
   const shipFee = Number(cfg.shippingFee || 30);
@@ -45,7 +49,36 @@
     paymentProof: null,
   };
 
+  function transferRemarkText() {
+    if (I18N && I18N.getLang && I18N.getLang() === "zh-Hant" && I18N.tpl) {
+      return I18N.tpl(tt("remarkTemplate"), { id: state.orderId });
+    }
+    return (
+      (cfg.fpsNote || "Please put the Order ID in the transfer remark.") +
+      "\n(Remark: " +
+      state.orderId +
+      ")"
+    );
+  }
+
   const $ = (id) => document.getElementById(id);
+
+  /** 畫面顯示用；訂單 summary 仍用英文 p.name */
+  function pickName(p) {
+    if (I18N && I18N.getLang && I18N.getLang() === "zh-Hant") {
+      const z = String(p.nameZh || "").trim();
+      if (z) return z;
+    }
+    return String(p.name || "").trim();
+  }
+
+  function pickDesc(p) {
+    if (I18N && I18N.getLang && I18N.getLang() === "zh-Hant") {
+      const z = String(p.descriptionZh || "").trim();
+      if (z) return z;
+    }
+    return String(p.description || "").trim();
+  }
 
   function money(n) {
     return currency + Number(n || 0).toFixed(0);
@@ -140,10 +173,10 @@
               <div class="flex items-start justify-between gap-4">
                 <div class="min-w-0">
                   <div class="truncate text-[13px] tracking-[0.14em] uppercase text-[#ededed]">${escapeHtml(
-                    p.name || ""
+                    pickName(p)
                   )}</div>
                   <div class="mt-2 whitespace-pre-line text-[12px] leading-relaxed text-[#9a9a9a]">${escapeHtml(
-                    p.description || ""
+                    pickDesc(p)
                   )}</div>
                 </div>
                 <div class="shrink-0 text-right">
@@ -152,7 +185,9 @@
                   )}</div>
                       <div class="mt-1 text-[11px] text-[#777]">${escapeHtml(
                         packGramLabel
-                      )} · ${Number(p.packs || cfg.unitPerQty || 10)} packs</div>
+                      )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
+                        tt("packsSuffix")
+                      )}</div>
                 </div>
               </div>
 
@@ -203,19 +238,22 @@
     if ($("cart-units")) $("cart-units").textContent = String(units);
     if ($("cart-subtotal")) $("cart-subtotal").textContent = money(sub);
     if ($("cart-shipping"))
-      $("cart-shipping").textContent = ship === 0 ? "Free" : money(ship);
+      $("cart-shipping").textContent = ship === 0 ? tt("shipFree") : money(ship);
     if ($("cart-total")) $("cart-total").textContent = money(grand);
     if ($("cart-ship-rule"))
       $("cart-ship-rule").textContent =
         sub >= freeAtAmount
-          ? "Free shipping applied"
-          : `Free shipping at ${money(freeAtAmount)}`;
+          ? tt("shipRuleFree")
+          : I18N && I18N.tpl
+            ? I18N.tpl(tt("shipRuleAt"), { amt: money(freeAtAmount) })
+            : `Free shipping at ${money(freeAtAmount)}`;
 
     const list = $("cart-lines");
     if (!list) return;
     if (lines.length === 0) {
-      list.innerHTML =
-        '<div class="py-10 text-center text-[12px] text-[#777]">Empty</div>';
+      list.innerHTML = `<div class="py-10 text-center text-[12px] text-[#777]">${escapeHtml(
+        tt("cartEmpty")
+      )}</div>`;
       if ($("btn-checkout")) $("btn-checkout").disabled = true;
       return;
     }
@@ -227,7 +265,7 @@
           <div class="flex items-start justify-between gap-3 py-3 border-b border-[#1a1a1a] last:border-b-0">
             <div class="min-w-0">
               <div class="truncate text-[12px] tracking-[0.14em] uppercase text-[#ededed]">${escapeHtml(
-                L.product.name || ""
+                pickName(L.product)
               )}</div>
               <div class="mt-1 text-[11px] text-[#777]">${money(
                 L.product.price
@@ -369,7 +407,7 @@
       if (!file) return;
       const maxIn = 12 * 1024 * 1024;
       if (file.size > maxIn) {
-        showProofErr("Image must be under 12 MB.");
+        showProofErr(tt("errImageBig"));
         input.value = "";
         return;
       }
@@ -387,7 +425,7 @@
           fnEl.classList.remove("hidden");
         }
       } catch {
-        showProofErr("Could not read this image. Use a JPG, PNG, or WebP screen capture / photo.");
+        showProofErr(tt("errImageRead"));
         input.value = "";
       }
     });
@@ -398,12 +436,7 @@
     resetPaymentProof();
     state.orderId = genOrderId();
     if ($("order-id-display")) $("order-id-display").textContent = state.orderId;
-    if ($("remark-note"))
-      $("remark-note").textContent =
-        (cfg.fpsNote || "Please put the Order ID in the transfer remark.") +
-        "\n(Remark: " +
-        state.orderId +
-        ")";
+    if ($("remark-note")) $("remark-note").textContent = transferRemarkText();
     if ($("payme-link")) $("payme-link").href = cfg.payMeUrl || "#";
     if ($("fps-id")) $("fps-id").textContent = cfg.fpsId || "";
     if ($("order-id")) $("order-id").value = state.orderId;
@@ -463,23 +496,40 @@
   }
 
   function buildOrderSummary() {
+    const isZh = I18N && I18N.getLang && I18N.getLang() === "zh-Hant";
     const lines = cartLines();
     const units = unitCount();
     const sub = subtotal();
     const ship = shipping(sub);
     const grand = sub + ship;
     let t = "";
-    t += "Order ID: " + state.orderId + "\n\n";
     for (const L of lines) {
-      t += `${L.product.name} × ${L.qty}  @ ${money(L.product.price)}  = ${money(
+      const lineBody = `${L.product.name} × ${L.qty}  @ ${money(L.product.price)}  = ${money(
         L.product.price * L.qty
       )}\n`;
+      t += lineBody;
     }
-    t += `\nPacks: ${units}\nSubtotal: ${money(sub)}\nShipping: ${
-      ship === 0 ? "Free" : money(ship)
-    }\nTotal: ${money(grand)}\n`;
-    t += "\nPayment: PayMe or FPS\n";
-    t += (cfg.fpsNote || "Please put the Order ID in the transfer remark.") + "\n";
+    const itemsBlock = t;
+    t = "";
+    if (isZh) {
+      t += "訂單編號：" + state.orderId + "\n\n" + itemsBlock;
+      t += `\n包數：${units}\n小計：${money(sub)}\n運費：${
+        ship === 0 ? "免運" : money(ship)
+      }\n合計：${money(grand)}\n`;
+      t += "\n付款：PayMe 或 轉數快\n";
+      if (I18N && I18N.tpl) {
+        t += I18N.tpl(tt("remarkTemplate"), { id: state.orderId }).trim() + "\n";
+      } else {
+        t += "請於轉帳備註填寫訂單編號。\n（備註：" + state.orderId + "）\n";
+      }
+    } else {
+      t += "Order ID: " + state.orderId + "\n\n" + itemsBlock;
+      t += `\nPacks: ${units}\nSubtotal: ${money(sub)}\nShipping: ${
+        ship === 0 ? "Free" : money(ship)
+      }\nTotal: ${money(grand)}\n`;
+      t += "\nPayment: PayMe or FPS\n";
+      t += (cfg.fpsNote || "Please put the Order ID in the transfer remark.") + "\n";
+    }
     return t.trim();
   }
 
@@ -492,10 +542,16 @@
   }
 
   function orderSummaryDisplayHtml(plain) {
-    return String(plain || "")
+    const fpsLine =
+      cfg.fpsNote || "Please put the Order ID in the transfer remark.";
+    const raw =
+      I18N && I18N.translateSummaryDisplay
+        ? I18N.translateSummaryDisplay(plain, fpsLine)
+        : String(plain || "");
+    return raw
       .split("\n")
       .map((line) => {
-        if (/^Total:\s/.test(line)) {
+        if (/^(Total:|合計：)/.test(line)) {
           return '<strong class="font-bold text-ink-95">' + escapeHtml(line) + "</strong>";
         }
         return escapeHtml(line);
@@ -532,8 +588,8 @@
     if (copyOrderBtn) {
       copyOrderBtn.addEventListener("click", async () => {
         const ok = await copyText(state.orderId);
-        copyOrderBtn.textContent = ok ? "Copied" : "Copy";
-        if (ok) setTimeout(() => (copyOrderBtn.textContent = "Copy"), 900);
+        copyOrderBtn.textContent = ok ? tt("chkCopied") : tt("chkCopy");
+        if (ok) setTimeout(() => (copyOrderBtn.textContent = tt("chkCopy")), 900);
       });
     }
 
@@ -541,8 +597,8 @@
     if (copyFpsBtn) {
       copyFpsBtn.addEventListener("click", async () => {
         const ok = await copyText(cfg.fpsId || "");
-        copyFpsBtn.textContent = ok ? "Copied" : "Copy";
-        if (ok) setTimeout(() => (copyFpsBtn.textContent = "Copy"), 900);
+        copyFpsBtn.textContent = ok ? tt("chkCopied") : tt("chkCopy");
+        if (ok) setTimeout(() => (copyFpsBtn.textContent = tt("chkCopy")), 900);
       });
     }
 
@@ -566,8 +622,7 @@
         if (!state.paymentProof || !state.paymentProof.base64) {
           const pe = $("payment-proof-error");
           if (pe) {
-            pe.textContent =
-              "Please upload your transfer screen capture / photo before submitting.";
+            pe.textContent = tt("errNeedProof");
             pe.classList.remove("hidden");
             try {
               pe.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -580,13 +635,14 @@
 
         const btn = $("btn-submit-order");
         const oldBtnText = btn ? btn.textContent : "";
-        if (btn) btn.textContent = "Sending...";
+        if (btn) btn.textContent = tt("formSending");
 
         const phone = (form.querySelector('[name="phone"]') || {}).value || "";
         const email = (form.querySelector('[name="email"]') || {}).value || "";
         const payload = {
           orderId: state.orderId,
           createdAt: new Date().toISOString(),
+          lang: I18N && I18N.getLang ? I18N.getLang() : "en",
           name: (form.querySelector('[name="name"]') || {}).value || "",
           phone,
           whatsapp: phone,
@@ -608,7 +664,7 @@
             headers: { "Content-Type": "text/plain;charset=utf-8" },
             body: JSON.stringify(payload),
           });
-          if (btn) btn.textContent = "Sent";
+          if (btn) btn.textContent = tt("formSent");
           setTimeout(() => closeCheckout(), 600);
           setTimeout(() => {
             state.cart = {};
@@ -618,9 +674,9 @@
           }, 650);
         } catch (e) {
           console.error("Order submit failed:", e);
-          if (btn) btn.textContent = "Failed — Try again";
+          if (btn) btn.textContent = tt("formFailed");
           setTimeout(() => {
-            if (btn) btn.textContent = oldBtnText || "Submit";
+            if (btn) btn.textContent = oldBtnText || tt("formSubmit");
           }, 1200);
         } finally {
           state.submitting = false;
@@ -644,7 +700,8 @@
   }
 
   function renderDisclaimer() {
-    const raw = cfg.disclaimerNote;
+    const raw =
+      I18N && I18N.disclaimerForLang ? I18N.disclaimerForLang() : cfg.disclaimerNote;
     fillDisclaimerEl($("footer-disclaimer"), raw);
     fillDisclaimerEl($("checkout-disclaimer"), raw);
   }
@@ -668,6 +725,21 @@
       renderShopRows();
       renderCart();
       renderCartMobile();
+    });
+
+    window.addEventListener("cove-lang-change", () => {
+      if (I18N && I18N.applyToDocument) I18N.applyToDocument();
+      renderDisclaimer();
+      renderShopRows();
+      renderCart();
+      renderCartMobile();
+      if (document.body.classList.contains("checkout-open") && state.orderId) {
+        if ($("remark-note")) $("remark-note").textContent = transferRemarkText();
+        const summary = buildOrderSummary();
+        if ($("order-summary")) $("order-summary").value = summary;
+        if ($("order-summary-display"))
+          $("order-summary-display").innerHTML = orderSummaryDisplayHtml(summary);
+      }
     });
   }
 
