@@ -16,7 +16,7 @@ window.SHOP_CATALOG = [
     packs: 10,
     nameZh: "Cove 花果",
     descriptionZh: "2款花果精選 × 5",
-    price: 180,
+    price: 150,
     enabled: true,
   },
 ];

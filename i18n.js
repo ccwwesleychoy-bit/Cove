@@ -102,7 +102,7 @@
       shipRuleAt: "滿 {{amt}} 免運費",
       mobilePacks: "包數",
       aboutTitle: "關於 COVE",
-      about1: "COVE 做好一件簡單的事：讓好咖啡變得簡單。",
+      about1: "COVE 只做一件事：讓好咖啡變得簡單。",
       about2: "我們挑選優質單一產區咖啡豆，製成方便的掛耳包。",
       about3: "讓你在自己的小天地裡，隨時隨地享受一杯好咖啡。",
       about4: "簡單。純粹。COVE。",
