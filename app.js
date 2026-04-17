@@ -713,38 +713,26 @@
     return String(raw || "").trim();
   }
 
-  function escHtml(s) {
-    return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  function renderContactInfo(forcedLang) {
-    const root = $("contact-body");
-    if (!root || !I18N || !I18N.tpl) return;
-    const phone = contactPhoneDisplay(cfg.contactPhone);
+  /** 聯絡文案在 index.html 內中英各一區，依 data-cove-lang 用 CSS 切換；此處只同步 config 電話／電郵 */
+  function renderContactInfo() {
+    const phone = contactPhoneDisplay(cfg.contactPhone) || "—";
     const email = String(cfg.contactEmail || "").trim();
-    const emailLink = email
-      ? `<a class="text-ink-95 underline-offset-2 hover:underline" href="mailto:${encodeURIComponent(
-          email
-        )}">${escHtml(email)}</a>`
-      : '<span class="text-ink-60">—</span>';
-    const L =
-      forcedLang === "zh-Hant" || forcedLang === "en"
-        ? forcedLang
-        : I18N.getLang && I18N.getLang();
-    const template =
-      I18N.tWithLang && (L === "zh-Hant" || L === "en")
-        ? I18N.tWithLang("contactBodyHtml", L)
-        : I18N.t
-          ? I18N.t("contactBodyHtml")
-          : "";
-    const html = I18N.tpl(template, {
-      phone: escHtml(phone || "—"),
-      emailLink,
+    const phoneZh = $("contact-phone-display-zh");
+    const phoneEn = $("contact-phone-display-en");
+    if (phoneZh) phoneZh.textContent = phone;
+    if (phoneEn) phoneEn.textContent = phone;
+    const linkZh = $("contact-email-link-zh");
+    const linkEn = $("contact-email-link-en");
+    [linkZh, linkEn].forEach((a) => {
+      if (!a) return;
+      if (email) {
+        a.href = "mailto:" + email;
+        a.textContent = email;
+      } else {
+        a.removeAttribute("href");
+        a.textContent = "";
+      }
     });
-    root.innerHTML = html;
   }
 
   async function boot() {
@@ -766,14 +754,10 @@
 
   // 須在 boot 的 await 之前註冊：否則使用者在 catalog 載入前切換「中／EN」會錯過事件，
   // 導覽等已由 i18n 更新，但 #contact-body 仍停留在 index 內的英文備援。
-  window.addEventListener("cove-lang-change", (ev) => {
-    const lang =
-      ev && ev.detail && (ev.detail.lang === "zh-Hant" || ev.detail.lang === "en")
-        ? ev.detail.lang
-        : null;
+  window.addEventListener("cove-lang-change", () => {
     if (I18N && I18N.applyToDocument) I18N.applyToDocument();
     renderDisclaimer();
-    renderContactInfo(lang);
+    renderContactInfo();
     renderShopRows();
     renderCart();
     renderCartMobile();

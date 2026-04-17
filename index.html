@@ -88,6 +88,23 @@
         text-transform: none;
         letter-spacing: 0.14em;
       }
+      /* 聯絡：中英文並列，依 i18n 寫入的 data-cove-lang 切換（不依賴 app 覆寫 innerHTML） */
+      #contact-body > .cove-contact-zh {
+        display: none;
+      }
+      #contact-body > .cove-contact-en {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      html[data-cove-lang="zh-Hant"] #contact-body > .cove-contact-zh {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      html[data-cove-lang="zh-Hant"] #contact-body > .cove-contact-en {
+        display: none;
+      }
     </style>
   </head>
   <body class="notranslate font-body bg-[#1A1A1A] text-ink-95 antialiased" translate="no">
@@ -200,23 +217,36 @@
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="contactTitle">Contact</h1>
         </div>
-        <!-- 預設文案：避免只上傳部分檔案時 #contact-body 缺失或 JS 失敗導致聯絡區空白；載入後由 app.js 依語言覆寫。 -->
+        <!-- 中英文各一區：顯示由 html[data-cove-lang] 控制；電話／電郵由 app.js 從 config 寫入 -->
         <div
           id="contact-body"
-          class="mt-10 flex flex-col gap-3 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
+          class="mt-10 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
           translate="no"
         >
-          <p class="m-0">
-            If you have any questions or would like to know more, feel free to reach out to us.
-          </p>
-          <p class="m-0 mt-5">Phone: <span class="tabular">9013 7619</span></p>
-          <p class="m-0 mt-5">
-            Email:
-            <a
-              class="text-ink-95 underline-offset-2 hover:underline"
-              href="mailto:covecoffeeinfo@gmail.com"
-              >covecoffeeinfo@gmail.com</a>
-          </p>
+          <div class="cove-contact-zh">
+            <p class="m-0">如有任何查詢或想了解更多，歡迎隨時聯絡我們。</p>
+            <p class="m-0 mt-5">電話：<span id="contact-phone-display-zh" class="text-ink-95 tabular"></span></p>
+            <p class="m-0 mt-5">
+              電郵：
+              <a
+                id="contact-email-link-zh"
+                class="text-ink-95 underline-offset-2 hover:underline"
+                href="mailto:covecoffeeinfo@gmail.com"
+                >covecoffeeinfo@gmail.com</a>
+            </p>
+          </div>
+          <div class="cove-contact-en">
+            <p class="m-0">If you have any questions or would like to know more, feel free to reach out to us.</p>
+            <p class="m-0 mt-5">Phone: <span id="contact-phone-display-en" class="text-ink-95 tabular"></span></p>
+            <p class="m-0 mt-5">
+              Email:
+              <a
+                id="contact-email-link-en"
+                class="text-ink-95 underline-offset-2 hover:underline"
+                href="mailto:covecoffeeinfo@gmail.com"
+                >covecoffeeinfo@gmail.com</a>
+            </p>
+          </div>
         </div>
       </section>
     </main>
