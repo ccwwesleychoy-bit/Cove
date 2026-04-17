@@ -152,7 +152,7 @@
 
   function getLang() {
     try {
-      var s = localStorage.getItem(STORAGE_KEY);
+      var s = (localStorage.getItem(STORAGE_KEY) || "").trim();
       return s === "zh-Hant" ? "zh-Hant" : "en";
     } catch (_) {
       return "en";
@@ -172,6 +172,14 @@
 
   function t(key) {
     var L = getLang();
+    var pack = STR[L] || STR.en;
+    if (Object.prototype.hasOwnProperty.call(pack, key)) return pack[key];
+    return STR.en[key] != null ? STR.en[key] : key;
+  }
+
+  /** 不依賴 storage 重讀時序；供聯絡區等與 `cove-lang-change` 同步 */
+  function tWithLang(key, lang) {
+    var L = lang === "zh-Hant" ? "zh-Hant" : "en";
     var pack = STR[L] || STR.en;
     if (Object.prototype.hasOwnProperty.call(pack, key)) return pack[key];
     return STR.en[key] != null ? STR.en[key] : key;
@@ -254,6 +262,7 @@
     getLang: getLang,
     setLang: setLang,
     t: t,
+    tWithLang: tWithLang,
     tpl: tpl,
     applyToDocument: applyToDocument,
     translateSummaryDisplay: translateSummaryDisplay,

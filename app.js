@@ -720,9 +720,9 @@
       .replace(/"/g, "&quot;");
   }
 
-  function renderContactInfo() {
+  function renderContactInfo(forcedLang) {
     const root = $("contact-body");
-    if (!root || !I18N || !I18N.t || !I18N.tpl) return;
+    if (!root || !I18N || !I18N.tpl) return;
     const phone = contactPhoneDisplay(cfg.contactPhone);
     const email = String(cfg.contactEmail || "").trim();
     const emailLink = email
@@ -730,7 +730,17 @@
           email
         )}">${escHtml(email)}</a>`
       : '<span class="text-ink-60">—</span>';
-    const html = I18N.tpl(I18N.t("contactBodyHtml"), {
+    const L =
+      forcedLang === "zh-Hant" || forcedLang === "en"
+        ? forcedLang
+        : I18N.getLang && I18N.getLang();
+    const template =
+      I18N.tWithLang && (L === "zh-Hant" || L === "en")
+        ? I18N.tWithLang("contactBodyHtml", L)
+        : I18N.t
+          ? I18N.t("contactBodyHtml")
+          : "";
+    const html = I18N.tpl(template, {
       phone: escHtml(phone || "—"),
       emailLink,
     });
@@ -752,23 +762,29 @@
       renderCart();
       renderCartMobile();
     });
-
-    window.addEventListener("cove-lang-change", () => {
-      if (I18N && I18N.applyToDocument) I18N.applyToDocument();
-      renderDisclaimer();
-      renderContactInfo();
-      renderShopRows();
-      renderCart();
-      renderCartMobile();
-      if (document.body.classList.contains("checkout-open") && state.orderId) {
-        if ($("remark-note")) $("remark-note").textContent = transferRemarkText();
-        const summary = buildOrderSummary();
-        if ($("order-summary")) $("order-summary").value = summary;
-        if ($("order-summary-display"))
-          $("order-summary-display").innerHTML = orderSummaryDisplayHtml(summary);
-      }
-    });
   }
+
+  // 須在 boot 的 await 之前註冊：否則使用者在 catalog 載入前切換「中／EN」會錯過事件，
+  // 導覽等已由 i18n 更新，但 #contact-body 仍停留在 index 內的英文備援。
+  window.addEventListener("cove-lang-change", (ev) => {
+    const lang =
+      ev && ev.detail && (ev.detail.lang === "zh-Hant" || ev.detail.lang === "en")
+        ? ev.detail.lang
+        : null;
+    if (I18N && I18N.applyToDocument) I18N.applyToDocument();
+    renderDisclaimer();
+    renderContactInfo(lang);
+    renderShopRows();
+    renderCart();
+    renderCartMobile();
+    if (document.body.classList.contains("checkout-open") && state.orderId) {
+      if ($("remark-note")) $("remark-note").textContent = transferRemarkText();
+      const summary = buildOrderSummary();
+      if ($("order-summary")) $("order-summary").value = summary;
+      if ($("order-summary-display"))
+        $("order-summary-display").innerHTML = orderSummaryDisplayHtml(summary);
+    }
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => void boot());
