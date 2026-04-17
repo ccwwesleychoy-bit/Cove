@@ -736,6 +736,7 @@
   }
 
   async function boot() {
+    renderContactInfo();
     await loadCatalogPreferJson();
     renderDisclaimer();
     renderContactInfo();
@@ -769,6 +770,9 @@
         $("order-summary-display").innerHTML = orderSummaryDisplayHtml(summary);
     }
   });
+
+  // catalog 載入前就先寫入聯絡電話／電郵，避免 await 期間電話欄空白
+  renderContactInfo();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => void boot());

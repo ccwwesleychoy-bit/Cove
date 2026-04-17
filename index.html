@@ -105,6 +105,25 @@
       html[data-cove-lang="zh-Hant"] #contact-body > .cove-contact-en {
         display: none;
       }
+      /* 聯絡：Word 式「名稱 [Tab] : 內容」— Tab 在冒號前，冒號與內容同欄對齊 */
+      .cove-contact-meta.cove-contact-grid {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: 1.25rem;
+        row-gap: 1.25rem;
+        margin: 1.25rem 0 0;
+        align-items: baseline;
+      }
+      .cove-contact-grid .cove-lbl {
+        margin: 0;
+        text-align: left;
+        white-space: nowrap;
+      }
+      .cove-contact-grid .cove-val {
+        margin: 0;
+        min-width: 0;
+        text-align: left;
+      }
     </style>
   </head>
   <body class="notranslate font-body bg-[#1A1A1A] text-ink-95 antialiased" translate="no">
@@ -225,27 +244,37 @@
         >
           <div class="cove-contact-zh">
             <p class="m-0">如有任何查詢或想了解更多，歡迎隨時聯絡我們。</p>
-            <p class="m-0 mt-5">電話：<span id="contact-phone-display-zh" class="text-ink-95 tabular"></span></p>
-            <p class="m-0 mt-5">
-              電郵：
-              <a
-                id="contact-email-link-zh"
-                class="text-ink-95 underline-offset-2 hover:underline"
-                href="mailto:covecoffeeinfo@gmail.com"
-                >covecoffeeinfo@gmail.com</a>
-            </p>
+            <div class="cove-contact-meta cove-contact-grid">
+              <p class="cove-lbl">電話</p>
+              <p class="cove-val">
+                <span class="text-ink-95/90">：</span>&nbsp;&nbsp;<span id="contact-phone-display-zh" class="text-ink-95 tabular">9013 7619</span>
+              </p>
+              <p class="cove-lbl">電郵</p>
+              <p class="cove-val">
+                <span class="text-ink-95/90">：</span>&nbsp;&nbsp;<a
+                  id="contact-email-link-zh"
+                  class="text-ink-95 underline-offset-2 hover:underline"
+                  href="mailto:covecoffeeinfo@gmail.com"
+                  >covecoffeeinfo@gmail.com</a>
+              </p>
+            </div>
           </div>
           <div class="cove-contact-en">
             <p class="m-0">If you have any questions or would like to know more, feel free to reach out to us.</p>
-            <p class="m-0 mt-5">Phone: <span id="contact-phone-display-en" class="text-ink-95 tabular"></span></p>
-            <p class="m-0 mt-5">
-              Email:
-              <a
-                id="contact-email-link-en"
-                class="text-ink-95 underline-offset-2 hover:underline"
-                href="mailto:covecoffeeinfo@gmail.com"
-                >covecoffeeinfo@gmail.com</a>
-            </p>
+            <div class="cove-contact-meta cove-contact-grid">
+              <p class="cove-lbl">Phone</p>
+              <p class="cove-val">
+                <span class="text-ink-95/90">:</span>&nbsp;&nbsp;<span id="contact-phone-display-en" class="text-ink-95 tabular">9013 7619</span>
+              </p>
+              <p class="cove-lbl">Email</p>
+              <p class="cove-val">
+                <span class="text-ink-95/90">:</span>&nbsp;&nbsp;<a
+                  id="contact-email-link-en"
+                  class="text-ink-95 underline-offset-2 hover:underline"
+                  href="mailto:covecoffeeinfo@gmail.com"
+                  >covecoffeeinfo@gmail.com</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
