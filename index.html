@@ -200,11 +200,24 @@
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="contactTitle">Contact</h1>
         </div>
+        <!-- 預設文案：避免只上傳部分檔案時 #contact-body 缺失或 JS 失敗導致聯絡區空白；載入後由 app.js 依語言覆寫。 -->
         <div
           id="contact-body"
           class="mt-10 flex flex-col gap-3 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
           translate="no"
-        ></div>
+        >
+          <p class="m-0">
+            If you have any questions or would like to know more, feel free to reach out to us.
+          </p>
+          <p class="m-0 mt-5">Phone: <span class="tabular">9013 7619</span></p>
+          <p class="m-0 mt-5">
+            Email:
+            <a
+              class="text-ink-95 underline-offset-2 hover:underline"
+              href="mailto:covecoffeeinfo@gmail.com"
+              >covecoffeeinfo@gmail.com</a>
+          </p>
+        </div>
       </section>
     </main>
 
