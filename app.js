@@ -707,15 +707,40 @@
     fillDisclaimerEl($("checkout-disclaimer"), raw);
   }
 
-  function renderContactPhone() {
-    const el = $("contact-phone-display");
-    if (el) el.textContent = String(cfg.contactPhone || "").trim();
+  function contactPhoneDisplay(raw) {
+    const d = String(raw || "").replace(/\D/g, "");
+    if (d.length === 8) return d.slice(0, 4) + " " + d.slice(4);
+    return String(raw || "").trim();
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderContactInfo() {
+    const root = $("contact-body");
+    if (!root || !I18N || !I18N.t || !I18N.tpl) return;
+    const phone = contactPhoneDisplay(cfg.contactPhone);
+    const email = String(cfg.contactEmail || "").trim();
+    const emailLink = email
+      ? `<a class="text-ink-95 underline-offset-2 hover:underline" href="mailto:${encodeURIComponent(
+          email
+        )}">${escHtml(email)}</a>`
+      : '<span class="text-ink-60">—</span>';
+    const html = I18N.tpl(I18N.t("contactBodyHtml"), {
+      phone: escHtml(phone || "—"),
+      emailLink,
+    });
+    root.innerHTML = html;
   }
 
   async function boot() {
     await loadCatalogPreferJson();
     renderDisclaimer();
-    renderContactPhone();
+    renderContactInfo();
     renderShopRows();
     renderCart();
     renderCartMobile();
@@ -731,6 +756,7 @@
     window.addEventListener("cove-lang-change", () => {
       if (I18N && I18N.applyToDocument) I18N.applyToDocument();
       renderDisclaimer();
+      renderContactInfo();
       renderShopRows();
       renderCart();
       renderCartMobile();

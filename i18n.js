@@ -38,8 +38,10 @@
       about3: "So you can enjoy a good cup in your own little cove — anywhere, anytime.",
       about4: "Simple. Pure. COVE.",
       contactTitle: "Contact",
-      contactLead: "For any enquiries, please contact",
-      contactTrail: ".",
+      contactBodyHtml:
+        '<p class="m-0">If you have any questions or would like to know more, feel free to reach out to us.</p>' +
+        '<p class="m-0 mt-5">Phone: {{phone}}</p>' +
+        '<p class="m-0 mt-5">Email: {{emailLink}}</p>',
       footerSales: "Sales policy",
       chkTitle: "Checkout",
       chkClose: "Close",
@@ -107,8 +109,10 @@
       about3: "讓你在任何地方，都能輕鬆享受一杯好咖啡。",
       about4: "簡單。純粹。COVE。",
       contactTitle: "聯絡",
-      contactLead: "如有查詢，請聯絡",
-      contactTrail: "。",
+      contactBodyHtml:
+        '<p class="m-0">如有任何查詢或想了解更多，歡迎隨時聯絡我們。</p>' +
+        '<p class="m-0 mt-5">電話：{{phone}}</p>' +
+        '<p class="m-0 mt-5">電郵：{{emailLink}}</p>',
       footerSales: "銷售條款",
       chkTitle: "結帳",
       chkClose: "關閉",

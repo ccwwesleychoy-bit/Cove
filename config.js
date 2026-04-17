@@ -16,6 +16,7 @@ window.SHOP_CONFIG = {
   payMeUrl: "https://payme.hsbc/996976ef1a4840e397b5d218c81a662a",
   // General enquiries (Contact section only — separate from FPS below).
   contactPhone: "90137619",
+  contactEmail: "covecoffeeinfo@gmail.com",
   fpsId: "128799590",
   fpsNote: "Please put the Order ID in the transfer remark.",
   // Optional: Google Apps Script Web App URL. POST JSON includes paymentProofBase64 / Mime / FileName
