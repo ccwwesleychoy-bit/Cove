@@ -80,6 +80,20 @@
       body.checkout-open footer {
         pointer-events: none;
       }
+      .checkout-payment-row {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      @media (min-width: 640px) {
+        .checkout-payment-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .checkout-payment-row:has(#kpay-link-wrap:not([hidden])) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
       html[data-cove-lang="zh-Hant"] .i18n-nav-wrap {
         text-transform: none;
         letter-spacing: 0.06em;
@@ -111,7 +125,7 @@
         grid-template-columns: max-content 1fr;
         column-gap: 1.25rem;
         row-gap: 1.25rem;
-        margin: 1.25rem 0 0;
+        margin: 0;
         align-items: baseline;
       }
       .cove-contact-grid .cove-lbl {
@@ -216,7 +230,7 @@
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="aboutTitle">About COVE</h1>
         </div>
-        <div class="mt-10 max-w-2xl">
+        <div class="mt-8 max-w-2xl">
           <!-- In-stanza: <br> + leading; between stanzas: flex gap only (same top/bottom spacing every time). -->
           <div class="flex flex-col gap-6 font-heading text-[14px] leading-[1.65] tracking-[0.10em] text-ink-95/90">
             <div data-i18n="about1">COVE is about simple coffee, done well.</div>
@@ -239,11 +253,10 @@
         <!-- 中英文各一區：顯示由 html[data-cove-lang] 控制；電話／電郵由 app.js 從 config 寫入 -->
         <div
           id="contact-body"
-          class="mt-10 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
+          class="mt-8 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
           translate="no"
         >
           <div class="cove-contact-zh">
-            <p class="m-0">如有任何查詢或想了解更多，歡迎隨時聯絡我們。</p>
             <div class="cove-contact-meta cove-contact-grid">
               <p class="cove-lbl">電話</p>
               <p class="cove-val">
@@ -260,7 +273,6 @@
             </div>
           </div>
           <div class="cove-contact-en">
-            <p class="m-0">If you have any questions or would like to know more, feel free to reach out to us.</p>
             <div class="cove-contact-meta cove-contact-grid">
               <p class="cove-lbl">Phone</p>
               <p class="cove-val">
@@ -346,7 +358,7 @@
               id="remark-note"
             ></div>
 
-            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div id="checkout-payment-row" class="checkout-payment-row">
               <a
                 id="payme-link"
                 href="#"
@@ -370,6 +382,18 @@
                     Copy
                   </button>
                 </div>
+              </div>
+              <div id="kpay-link-wrap" hidden>
+                <a
+                  id="kpay-link"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex h-full min-h-[4.5rem] items-center justify-center border border-ink-40 bg-ink-10 px-4 py-3 text-center text-[12px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors"
+                  data-i18n="chkKPay"
+                >
+                  K Pay
+                </a>
               </div>
             </div>
 
@@ -408,13 +432,7 @@
 
               <div class="block border border-ink-40 bg-ink-10 px-4 py-4">
                 <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formPayCap">Payment screenshot</div>
-                <p
-                  class="mt-2 text-[11px] leading-relaxed text-ink-60"
-                  data-i18n="formPayHelp"
-                  data-i18n-html
-                >
-                  Upload a <strong class="font-medium text-ink-95">screen capture / photo</strong> of your completed PayMe or FPS (showing amount and time). Required — orders without this image cannot be submitted.
-                </p>
+                <p id="form-pay-help" class="mt-2 text-[11px] leading-relaxed text-ink-60" data-i18n-html></p>
                 <input
                   id="payment-proof-input"
                   type="file"

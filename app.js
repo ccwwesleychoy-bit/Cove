@@ -439,6 +439,19 @@
     if ($("remark-note")) $("remark-note").textContent = transferRemarkText();
     if ($("payme-link")) $("payme-link").href = cfg.payMeUrl || "#";
     if ($("fps-id")) $("fps-id").textContent = cfg.fpsId || "";
+    const kpayUrl = String(cfg.kpayUrl || "").trim();
+    const kpayWrap = $("kpay-link-wrap");
+    const kpayLink = $("kpay-link");
+    if (kpayWrap && kpayLink) {
+      if (kpayUrl) {
+        kpayLink.href = kpayUrl;
+        kpayWrap.hidden = false;
+      } else {
+        kpayLink.removeAttribute("href");
+        kpayWrap.hidden = true;
+      }
+    }
+    renderPaymentFormHelp();
     if ($("order-id")) $("order-id").value = state.orderId;
     const summary = buildOrderSummary();
     if ($("order-summary")) $("order-summary").value = summary;
@@ -517,7 +530,7 @@
       t += `\n包數：${units}\n小計：${money(sub)}\n運費：${
         ship === 0 ? "免運" : money(ship)
       }\n合計：${money(grand)}\n`;
-      t += "\n付款：PayMe 或 轉數快\n";
+      t += hasKpayUrl() ? "\n付款：PayMe、轉數快 或 K Pay\n" : "\n付款：PayMe 或 轉數快\n";
       if (I18N && I18N.tpl) {
         t += I18N.tpl(tt("remarkTemplate"), { id: state.orderId }).trim() + "\n";
       } else {
@@ -528,7 +541,7 @@
       t += `\nPacks: ${units}\nSubtotal: ${money(sub)}\nShipping: ${
         ship === 0 ? "Free" : money(ship)
       }\nTotal: ${money(grand)}\n`;
-      t += "\nPayment: PayMe or FPS\n";
+      t += hasKpayUrl() ? "\nPayment: PayMe, FPS, or K Pay\n" : "\nPayment: PayMe or FPS\n";
       t += (cfg.fpsNote || "Please put the Order ID in the transfer remark.") + "\n";
     }
     return t.trim();
@@ -707,6 +720,17 @@
     fillDisclaimerEl($("checkout-disclaimer"), raw);
   }
 
+  function hasKpayUrl() {
+    return Boolean(String(cfg.kpayUrl || "").trim());
+  }
+
+  function renderPaymentFormHelp() {
+    const el = $("form-pay-help");
+    if (!el) return;
+    const html = tt(hasKpayUrl() ? "formPayHelpWithKpay" : "formPayHelp");
+    el.innerHTML = html;
+  }
+
   function contactPhoneDisplay(raw) {
     const d = String(raw || "").replace(/\D/g, "");
     if (d.length === 8) return d.slice(0, 4) + " " + d.slice(4);
@@ -737,9 +761,11 @@
 
   async function boot() {
     renderContactInfo();
+    renderPaymentFormHelp();
     await loadCatalogPreferJson();
     renderDisclaimer();
     renderContactInfo();
+    renderPaymentFormHelp();
     renderShopRows();
     renderCart();
     renderCartMobile();
@@ -758,6 +784,7 @@
   window.addEventListener("cove-lang-change", () => {
     if (I18N && I18N.applyToDocument) I18N.applyToDocument();
     renderDisclaimer();
+    renderPaymentFormHelp();
     renderContactInfo();
     renderShopRows();
     renderCart();
@@ -773,6 +800,7 @@
 
   // catalog 載入前就先寫入聯絡電話／電郵，避免 await 期間電話欄空白
   renderContactInfo();
+  renderPaymentFormHelp();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => void boot());

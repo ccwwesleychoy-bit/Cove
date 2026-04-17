@@ -14,6 +14,8 @@ window.SHOP_CONFIG = {
     "As drip bags contain fresh roasted coffee, returns and refunds are not accepted except in cases of manufacturing defects or damage during delivery.\n\n" +
     "We appreciate your understanding.",
   payMeUrl: "https://payme.hsbc/996976ef1a4840e397b5d218c81a662a",
+  // 可選：K Pay 商戶收款連結（信用卡／錢包等由 K Pay 提供）。留空則結帳不顯示 K Pay 按鈕；PayMe／FPS 仍用上面與 fpsId。
+  kpayUrl: "",
   // General enquiries (Contact section only — separate from FPS below).
   contactPhone: "90137619",
   contactEmail: "covecoffeeinfo@gmail.com",

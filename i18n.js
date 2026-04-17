@@ -47,6 +47,7 @@
       chkCopied: "Copied",
       chkPayMe: "PayMe",
       chkFps: "FPS",
+      chkKPay: "K Pay",
       formName: "Name",
       formPhone: "Phone / WhatsApp",
       formAddress: "Address",
@@ -55,6 +56,8 @@
       formPayCap: "Payment screenshot",
       formPayHelp:
         "Upload a <strong class=\"font-medium text-ink-95\">screen capture / photo</strong> of your completed PayMe or FPS (showing amount and time). Required — orders without this image cannot be submitted.",
+      formPayHelpWithKpay:
+        "Upload a <strong class=\"font-medium text-ink-95\">screen capture / photo</strong> of your completed PayMe, FPS, or K Pay (showing amount and time). Required — orders without this image cannot be submitted.",
       formChooseImg: "Choose image",
       formRemove: "Remove",
       formPreview: "Preview",
@@ -114,6 +117,7 @@
       chkCopied: "已複製",
       chkPayMe: "PayMe",
       chkFps: "轉數快 FPS",
+      chkKPay: "K Pay",
       formName: "姓名",
       formPhone: "電話 / WhatsApp",
       formAddress: "地址",
@@ -121,6 +125,8 @@
       formPayCap: "付款截圖",
       formPayHelp:
         "請上傳 PayMe 或轉數快完成畫面的<strong class=\"font-medium text-ink-95\">截圖或相片</strong>（需顯示金額與時間）。未附圖將無法提交訂單。",
+      formPayHelpWithKpay:
+        "請上傳 PayMe、轉數快或 K Pay 完成畫面的<strong class=\"font-medium text-ink-95\">截圖或相片</strong>（需顯示金額與時間）。未附圖將無法提交訂單。",
       formChooseImg: "選擇圖片",
       formRemove: "移除",
       formPreview: "預覽",
@@ -190,6 +196,7 @@
       [/^Shipping:\s*/gm, "運費："],
       [/^Total:\s*/gm, "合計："],
       [/^Payment:\s*PayMe or FPS\s*$/gm, "付款：PayMe 或 轉數快"],
+      [/^Payment:\s*PayMe, FPS, or K Pay\s*$/gm, "付款：PayMe、轉數快 或 K Pay"],
       [/^Payment:\s*/gm, "付款："],
     ];
     map.forEach(function (pair) {
