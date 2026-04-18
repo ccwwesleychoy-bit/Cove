@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260418_12">
+<html lang="en" translate="no" data-cove-build="20260418_17">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -172,7 +172,7 @@
         font-family: 'Cormorant Garamond', serif;
         font-weight: 300;
         font-style: italic;
-        font-size: 42px;
+        font-size: 36px;
         line-height: 1;
         letter-spacing: 0.02em;
         color: #7a7a7a;
@@ -180,8 +180,15 @@
         font-feature-settings: "lnum" 1;
       }
       /* Pull-quote for About closer */
-      .cove-pullquote { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: 0.04em; }
-      /* Feature strip icon line */
+      .cove-pullquote { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(26px, 4.2vw, 44px); line-height: 1.1; letter-spacing: 0.04em; }
+      /* Hero 主字標：Raleway Thin (100)，與 Google Fonts 載入一致 */
+      .cove-hero-wordmark {
+        font-family: "Raleway", ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+        font-weight: 100;
+      }
+      /* Feature strip：與全站字階一致，主副標分級 */
+      .cove-feature-title { font-size: 13px; letter-spacing: 0.18em; line-height: 1.35; font-weight: 400; }
+      .cove-feature-sub { font-size: 12px; letter-spacing: 0.1em; line-height: 1.45; font-weight: 300; }
       .cove-feature svg { flex-shrink: 0; }
     </style>
   </head>
@@ -189,7 +196,7 @@
     <!-- 讓 Tailwind Play CDN 在首屏就產出 app.js 會用到的工具類（與本機即時掃描行為一致） -->
     <span
       id="cove-tailwind-safelist"
-      class="sr-only pointer-events-none font-ui font-heading font-semibold font-medium font-normal font-light italic tabular-nums text-[10px] text-[11px] text-[12px] text-[13px] text-[14px] text-[16px] text-[22px] tracking-[0.02em] tracking-[0.04em] tracking-[0.06em] tracking-[0.3em] tracking-[0.32em] leading-none leading-[1.05] leading-[1.7] whitespace-pre-line whitespace-nowrap divide-y divide-ink-40 border-y first:pt-6 last:pb-6"
+      class="sr-only pointer-events-none font-ui font-heading font-semibold font-medium font-normal font-light italic tabular-nums text-[11px] text-[12px] text-[13px] text-[14px] text-[15px] text-[16px] text-[17px] text-[28px] text-[36px] tracking-[0.02em] tracking-[0.04em] tracking-[0.06em] tracking-[0.3em] tracking-[0.32em] leading-none leading-[1.05] leading-[1.7] whitespace-pre-line whitespace-nowrap divide-y divide-ink-40 border-y first:pt-6 last:pb-6"
       aria-hidden="true"
     ></span>
     <header class="sticky top-0 z-40 bg-[#1A1A1A]/80 backdrop-blur border-b border-ink-40">
@@ -200,9 +207,9 @@
               <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
               <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.7" fill="none" stroke-linecap="round"/>
             </svg>
-            <span class="font-display text-[15px] tracking-[0.38em] font-thin">COVE</span>
+            <span class="font-display text-[14px] tracking-[0.36em] font-thin">COVE</span>
           </a>
-          <nav class="i18n-nav-wrap flex items-center gap-4 sm:gap-6 text-[12px] tracking-[0.22em] uppercase text-ink-60">
+          <nav class="i18n-nav-wrap flex items-center gap-4 sm:gap-6 text-[13px] tracking-[0.2em] uppercase text-ink-60">
             <a href="#shop" class="hover:text-ink-95 transition-colors" data-i18n="navShop">Shop</a>
             <a href="#about" class="hover:text-ink-95 transition-colors" data-i18n="navAbout">About</a>
             <a href="#contact" class="hover:text-ink-95 transition-colors" data-i18n="navContact">Contact</a>
@@ -229,10 +236,10 @@
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.6" fill="none" stroke-linecap="round"/>
           </svg>
 
-          <div class="text-[11px] tracking-[0.36em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
+          <div class="text-[12px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
 
-          <!-- Wordmark: switched to display serif for quiet-luxury feel -->
-          <div class="mt-6 font-display text-[clamp(64px,10vw,140px)] leading-[0.92] font-thin">
+          <!-- Wordmark：Raleway Thin (weight 100) -->
+          <div class="cove-hero-wordmark mt-6 text-[clamp(56px,9vw,118px)] leading-[0.92]">
             <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.18em]">
               <span class="text-center">C</span>
               <span class="text-center">O</span>
@@ -244,7 +251,7 @@
           <!-- Hairline divider -->
           <div class="mx-auto mt-10 h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
 
-          <div class="mt-6 text-[11px] tracking-[0.32em] uppercase text-ink-60">
+          <div class="mt-6 text-[12px] tracking-[0.28em] uppercase text-ink-60">
             <div class="mx-auto flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-1">
               <span data-i18n="heroTag1">Simple brew</span>
               <span class="text-ink-95/70" aria-hidden="true">·</span>
@@ -253,7 +260,7 @@
           </div>
 
           <!-- Primary CTA -->
-          <a href="#shop" class="group mt-12 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[11px] tracking-[0.28em] uppercase text-ink-95 transition-colors">
+          <a href="#shop" class="group mt-12 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[12px] tracking-[0.24em] uppercase text-ink-95 transition-colors">
             <span data-i18n="heroCta">Shop Collection</span>
             <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
           </a>
@@ -267,30 +274,30 @@
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
               <path d="M3 7h13l3 4v6h-3m-10 0H3V7zm10 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featShipTitle">Free Shipping</div>
-            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featShipSub">Orders over HK$240</div>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featShipTitle">Free Shipping</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featShipSub">Orders over HK$240</div>
           </div>
           <div class="cove-feature flex flex-col items-center gap-2">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
               <path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5l-2.1 2.1M8.6 15.4l-2.1 2.1m12 0l-2.1-2.1M8.6 8.6L6.5 6.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featFreshTitle">Freshly Roasted</div>
-            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featFreshSub">Packed within 5 days of roasting</div>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featFreshTitle">Freshly Roasted</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featFreshSub">Packed within 5 days of roasting</div>
           </div>
           <div class="cove-feature flex flex-col items-center gap-2">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
               <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featPayTitle">Secure Payment</div>
-            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featPaySub">PayMe · FPS</div>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featPayTitle">Secure Payment</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featPaySub">PayMe · FPS</div>
           </div>
           <div class="cove-feature flex flex-col items-center gap-2">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
               <path d="M6 3v3a6 6 0 1 0 12 0V3M8 21h8m-4-6v6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featOriginTitle">Single Origin</div>
-            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featOriginSub">New lots often</div>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featOriginTitle">Single Origin</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featOriginSub">New lots often</div>
           </div>
         </div>
       </section>
@@ -301,8 +308,8 @@
           <div class="lg:col-span-8">
             <div class="flex items-end justify-between border-b border-ink-40 pb-4">
               <div>
-                <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-60" data-i18n="shopLabel">Shop</div>
-                <h1 class="mt-2 font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="shopTitle">Drip Bag Set</h1>
+                <div class="font-heading text-[14px] tracking-[0.22em] uppercase font-light text-ink-60" data-i18n="shopLabel">Shop</div>
+                <h1 class="mt-2 font-heading text-[14px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="shopTitle">Drip Bag Set</h1>
               </div>
             </div>
             <div id="shop-grid" class="mt-8"></div>
@@ -312,24 +319,24 @@
             <div class="sticky top-56 border border-ink-40 bg-ink-20">
               <div class="p-6">
                 <div class="flex items-center justify-between">
-                  <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="cartTitle">Cart</div>
-                  <button id="btn-clear" type="button" class="text-[12px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors" data-i18n="cartClear">Clear</button>
+                  <div class="text-[13px] tracking-[0.22em] uppercase text-ink-60" data-i18n="cartTitle">Cart</div>
+                  <button id="btn-clear" type="button" class="text-[13px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors" data-i18n="cartClear">Clear</button>
                 </div>
                 <div class="mt-6" id="cart-lines"></div>
                 <div class="mt-6 border-t border-ink-40 pt-6">
-                  <div class="grid grid-cols-2 gap-y-2 text-[13px] text-ink-60">
+                  <div class="grid grid-cols-2 gap-y-2 text-[14px] text-ink-60">
                     <div data-i18n="cartPacks">Packs</div><div id="cart-units" class="text-right tabular text-ink-95">0</div>
                     <div data-i18n="cartSubtotal">Subtotal</div><div id="cart-subtotal" class="text-right tabular text-ink-95">HK$0</div>
                     <div data-i18n="cartShipping">Shipping</div><div id="cart-shipping" class="text-right tabular text-ink-95">HK$0</div>
                     <div data-i18n="cartTotal">Total</div><div id="cart-total" class="text-right tabular text-ink-95">HK$0</div>
                   </div>
-                  <div id="cart-ship-rule" class="mt-4 text-[12px] leading-relaxed text-ink-60"></div>
+                  <div id="cart-ship-rule" class="mt-4 text-[13px] leading-relaxed text-ink-60"></div>
                   <div id="cart-progress" class="mt-3 cove-progress-track" hidden>
                     <div id="cart-progress-fill" class="cove-progress-fill" style="width:0%"></div>
                   </div>
                 </div>
                 <div class="mt-8">
-                  <button id="btn-checkout" type="button" class="w-full border border-ink-95 bg-ink-95 text-ink-10 px-4 py-4 text-[13px] tracking-[0.22em] uppercase hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-ink-60 disabled:border-ink-40 font-medium" disabled data-i18n="cartCheckout">Checkout</button>
+                  <button id="btn-checkout" type="button" class="w-full border border-ink-95 bg-ink-95 text-ink-10 px-4 py-4 text-[14px] tracking-[0.22em] uppercase hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-ink-60 disabled:border-ink-40 font-medium" disabled data-i18n="cartCheckout">Checkout</button>
                 </div>
               </div>
             </div>
@@ -340,7 +347,7 @@
       <!-- ABOUT -->
       <section id="about" class="cove-reveal py-20">
         <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVE</h1>
+          <h1 class="font-heading text-[14px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVE</h1>
         </div>
 
         <div class="mt-10 grid lg:grid-cols-12 gap-10 items-start">
@@ -354,7 +361,7 @@
 
           <!-- Copy column — first three lines preserved exactly -->
           <div class="lg:col-span-8 max-w-2xl">
-            <div class="flex flex-col gap-6 font-heading text-[18px] leading-[1.95] tracking-[0.02em] text-ink-95/90">
+            <div class="flex flex-col gap-6 font-heading text-[17px] leading-[1.9] tracking-[0.02em] text-ink-95/90">
               <div data-i18n="about1">COVE is about simple coffee, done well.</div>
               <div data-i18n="about2">
                 We select quality single origin coffees and pack them into easy drip bags.
@@ -366,7 +373,7 @@
             <!-- Hairline -->
             <div class="mt-10 mb-8 h-px w-16 bg-ink-60/50"></div>
             <!-- Closing line — pull-quote treatment -->
-            <div class="font-heading text-[clamp(22px,3vw,34px)] tracking-[0.18em] font-light text-ink-95" data-i18n="about4">Simple. Pure. COVE.</div>
+            <div class="font-heading text-[17px] leading-[1.9] tracking-[0.02em] font-light text-ink-95/90" data-i18n="about4">Simple. Pure. COVE.</div>
           </div>
         </div>
       </section>
@@ -374,12 +381,12 @@
       <!-- CONTACT -->
       <section id="contact" class="cove-reveal py-20 pb-28 lg:pb-20">
         <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="contactTitle">Contact</h1>
+          <h1 class="font-heading text-[14px] tracking-[0.22em] uppercase font-light" data-i18n="contactTitle">Contact</h1>
         </div>
         <!-- 中英文各一區：顯示由 html[data-cove-lang] 控制；電話／電郵由 app.js 從 config 寫入 -->
         <div
           id="contact-body"
-          class="mt-8 font-heading text-[17px] leading-[1.9] tracking-[0.02em] text-ink-95/90 font-light notranslate"
+          class="mt-8 font-heading text-[16px] leading-[1.88] tracking-[0.02em] text-ink-95/90 font-light notranslate"
           translate="no"
         >
           <div class="cove-contact-zh">
@@ -428,15 +435,15 @@
                 <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
                 <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.7" fill="none" stroke-linecap="round"/>
               </svg>
-              <span class="font-display text-[16px] tracking-[0.38em] font-thin">COVE</span>
+              <span class="font-display text-[15px] tracking-[0.36em] font-thin">COVE</span>
             </div>
-            <p class="font-heading text-[16px] leading-[1.85] tracking-[0.02em] text-ink-60 max-w-sm font-light" data-i18n="footerTagline">Simple coffee, done well. Find your cove — anywhere, anytime.</p>
+            <p class="font-heading text-[15px] leading-[1.82] tracking-[0.02em] text-ink-60 max-w-sm font-light" data-i18n="footerTagline">Simple coffee, done well. Find your cove — anywhere, anytime.</p>
           </div>
 
           <!-- Explore -->
           <div class="md:col-span-3">
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-60 mb-4" data-i18n="footerExplore">Explore</div>
-            <ul class="flex flex-col gap-2 text-[12px] text-ink-95/80">
+            <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60 mb-4" data-i18n="footerExplore">Explore</div>
+            <ul class="flex flex-col gap-2 text-[13px] text-ink-95/80">
               <li><a href="#shop" class="hover:text-ink-95 transition-colors" data-i18n="navShop">Shop</a></li>
               <li><a href="#about" class="hover:text-ink-95 transition-colors" data-i18n="navAbout">About</a></li>
               <li><a href="#contact" class="hover:text-ink-95 transition-colors" data-i18n="navContact">Contact</a></li>
@@ -445,15 +452,15 @@
 
           <!-- Sales policy -->
           <div class="md:col-span-4">
-            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-60 mb-4" data-i18n="footerSales">Sales policy</div>
+            <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60 mb-4" data-i18n="footerSales">Sales policy</div>
             <div
               id="footer-disclaimer"
-              class="flex flex-col gap-2 text-[11px] leading-relaxed text-ink-60 [&>p]:m-0"
+              class="flex flex-col gap-2 text-[13px] leading-relaxed text-ink-60 [&>p]:m-0"
             ></div>
           </div>
         </div>
 
-        <div class="mt-12 pt-6 border-t border-ink-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] tracking-[0.2em] uppercase text-ink-60">
+        <div class="mt-12 pt-6 border-t border-ink-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] tracking-[0.2em] uppercase text-ink-60">
           <div>© <span id="footer-year">2026</span> COVE · <span data-i18n="footerRights">All rights reserved</span></div>
         </div>
       </div>
@@ -463,10 +470,10 @@
     <div id="cart-mobile" class="lg:hidden fixed bottom-0 left-0 right-0 border-t border-ink-40 bg-ink-10/90 backdrop-blur px-4 py-4" hidden>
       <div class="mx-auto max-w-6xl flex items-center justify-between gap-4">
         <div>
-          <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60"><span data-i18n="mobilePacks">Packs</span> <span id="cart-mobile-units" class="text-ink-95 tabular">0</span></div>
-          <div id="cart-mobile-total" class="mt-1 text-[15px] tracking-[0.12em] tabular text-ink-95">HK$0</div>
+          <div class="text-[13px] tracking-[0.22em] uppercase text-ink-60"><span data-i18n="mobilePacks">Packs</span> <span id="cart-mobile-units" class="text-ink-95 tabular">0</span></div>
+          <div id="cart-mobile-total" class="mt-1 text-[16px] tracking-[0.1em] tabular text-ink-95">HK$0</div>
         </div>
-        <button id="btn-checkout-mobile" type="button" class="border border-ink-95 bg-ink-95 text-ink-10 px-6 py-3.5 text-[13px] tracking-[0.22em] uppercase hover:bg-white transition-colors font-medium" data-i18n="cartCheckout">Checkout</button>
+        <button id="btn-checkout-mobile" type="button" class="border border-ink-95 bg-ink-95 text-ink-10 px-6 py-3.5 text-[14px] tracking-[0.22em] uppercase hover:bg-white transition-colors font-medium" data-i18n="cartCheckout">Checkout</button>
       </div>
     </div>
 
@@ -480,11 +487,11 @@
           class="pointer-events-auto w-full max-h-[min(92vh,900px)] overflow-y-auto border border-ink-40 bg-ink-20 lg:max-w-xl lg:bg-[#1A1A1A]"
         >
           <div class="flex items-center justify-between px-6 py-5 border-b border-ink-40 bg-ink-20 lg:bg-[#1A1A1A]">
-            <div class="text-[12px] tracking-[0.22em] uppercase text-ink-95" data-i18n="chkTitle">Checkout</div>
+            <div class="text-[14px] tracking-[0.22em] uppercase text-ink-95" data-i18n="chkTitle">Checkout</div>
             <button
               id="btn-close-checkout"
               type="button"
-              class="min-h-11 min-w-[4.5rem] shrink-0 border border-ink-40 bg-ink-10 px-4 py-2.5 text-[11px] tracking-[0.22em] uppercase text-ink-95 hover:bg-ink-20 active:bg-ink-30 transition-colors"
+              class="min-h-11 min-w-[4.5rem] shrink-0 border border-ink-40 bg-ink-10 px-4 py-2.5 text-[13px] tracking-[0.22em] uppercase text-ink-95 hover:bg-ink-20 active:bg-ink-30 transition-colors"
               data-i18n="chkClose"
             >
               Close
@@ -492,24 +499,24 @@
           </div>
           <div class="p-6">
             <div class="border-b border-ink-40 pb-6 mb-6">
-              <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkOrderSummary">Order Summary</div>
-              <pre id="order-summary-display" class="mt-3 whitespace-pre-wrap text-[14px] leading-relaxed text-ink-95/90"></pre>
+              <div class="text-[13px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkOrderSummary">Order Summary</div>
+              <pre id="order-summary-display" class="mt-3 whitespace-pre-wrap text-[15px] leading-relaxed text-ink-95/90"></pre>
             </div>
 
-            <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkOrder">Order</div>
+            <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkOrder">Order</div>
             <div class="mt-2 flex items-center justify-between gap-4">
-              <div id="order-id-display" class="text-[12px] tabular text-ink-95"></div>
+              <div id="order-id-display" class="text-[14px] tabular text-ink-95"></div>
               <button
                 id="btn-copy-order-id"
                 type="button"
-                class="shrink-0 text-[11px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
+                class="shrink-0 text-[12px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
                 data-i18n="chkCopy"
               >
                 Copy
               </button>
             </div>
             <div
-              class="mt-3 whitespace-pre-line rounded border border-ink-40 bg-ink-10 px-3 py-2.5 text-[14px] leading-snug font-medium text-ink-95"
+              class="mt-3 whitespace-pre-line rounded border border-ink-40 bg-ink-10 px-3 py-2.5 text-[15px] leading-snug font-medium text-ink-95"
               id="remark-note"
             ></div>
 
@@ -519,19 +526,19 @@
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-ink-40 bg-ink-10 px-4 py-3 text-center text-[12px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors"
+                class="border border-ink-40 bg-ink-10 px-4 py-3 text-center text-[14px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors"
                 data-i18n="chkPayMe"
               >
                 PayMe
               </a>
               <div class="border border-ink-40 bg-ink-10 px-4 py-3">
-                <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkFps">FPS</div>
+                <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="chkFps">FPS</div>
                 <div class="mt-2 flex items-center justify-between gap-4">
-                  <div id="fps-id" class="text-[12px] tabular text-ink-95"></div>
+                  <div id="fps-id" class="text-[14px] tabular text-ink-95"></div>
                   <button
                     id="btn-copy-fps"
                     type="button"
-                    class="shrink-0 text-[11px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
+                    class="shrink-0 text-[12px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
                     data-i18n="chkCopy"
                   >
                     Copy
@@ -544,7 +551,7 @@
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex h-full min-h-[4.5rem] items-center justify-center border border-ink-40 bg-ink-10 px-4 py-3 text-center text-[12px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors"
+                  class="flex h-full min-h-[4.5rem] items-center justify-center border border-ink-40 bg-ink-10 px-4 py-3 text-center text-[14px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors"
                   data-i18n="chkKPay"
                 >
                   K Pay
@@ -553,10 +560,10 @@
             </div>
 
             <div id="sales-policy-checkout" class="mt-6 hidden">
-              <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="footerSales">Sales policy</div>
+              <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="footerSales">Sales policy</div>
               <div
                 id="checkout-disclaimer"
-                class="mt-2 flex flex-col gap-2 rounded border border-ink-40 bg-ink-10 px-3 py-2.5 text-[11px] leading-relaxed text-ink-60 [&>p]:m-0"
+                class="mt-2 flex flex-col gap-2 rounded border border-ink-40 bg-ink-10 px-3 py-2.5 text-[13px] leading-relaxed text-ink-60 [&>p]:m-0"
               ></div>
             </div>
 
@@ -568,26 +575,26 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <label class="block">
-                  <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formName">Name</div>
+                  <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formName">Name</div>
                   <input id="field-name" name="name" required class="mt-2 w-full bg-ink-10 border border-ink-40 px-4 py-3 text-base text-ink-95 outline-none focus:border-ink-95 focus:bg-ink-20 transition-colors" />
                 </label>
                 <label class="block">
-                  <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formPhone">Phone / WhatsApp</div>
+                  <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formPhone">Phone / WhatsApp</div>
                   <input name="phone" required class="mt-2 w-full bg-ink-10 border border-ink-40 px-4 py-3 text-base text-ink-95 outline-none focus:border-ink-95 focus:bg-ink-20 transition-colors" />
                 </label>
               </div>
               <label class="block">
-                <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formAddress">Address</div>
+                <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formAddress">Address</div>
                 <textarea name="address" required class="mt-2 w-full min-h-[96px] bg-ink-10 border border-ink-40 px-4 py-3 text-base text-ink-95 outline-none focus:border-ink-95 focus:bg-ink-20 transition-colors"></textarea>
               </label>
               <label class="block">
-                <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formEmail">Email (Optional) (Prefer email confirmation over WhatsApp)</div>
+                <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formEmail">Email (Optional) (Prefer email confirmation over WhatsApp)</div>
                 <input name="email" type="email" inputmode="email" autocomplete="email" class="mt-3 w-full bg-ink-10 border border-ink-40 px-4 py-3 text-base text-ink-95 outline-none focus:border-ink-95 focus:bg-ink-20 transition-colors" />
               </label>
 
               <div class="block border border-ink-40 bg-ink-10 px-4 py-4">
-                <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formPayCap">Payment screenshot</div>
-                <p id="form-pay-help" class="mt-2 text-[11px] leading-relaxed text-ink-60" data-i18n-html></p>
+                <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60" data-i18n="formPayCap">Payment screenshot</div>
+                <p id="form-pay-help" class="mt-2 text-[13px] leading-relaxed text-ink-60" data-i18n-html></p>
                 <input
                   id="payment-proof-input"
                   type="file"
@@ -600,7 +607,7 @@
                   <button
                     id="btn-payment-proof-pick"
                     type="button"
-                    class="border border-ink-40 bg-ink-20 px-4 py-2.5 text-[11px] tracking-[0.18em] uppercase text-ink-95 hover:bg-ink-30 transition-colors"
+                    class="border border-ink-40 bg-ink-20 px-4 py-2.5 text-[13px] tracking-[0.18em] uppercase text-ink-95 hover:bg-ink-30 transition-colors"
                     data-i18n="formChooseImg"
                   >
                     Choose image
@@ -608,16 +615,16 @@
                   <button
                     id="btn-payment-proof-clear"
                     type="button"
-                    class="hidden border border-ink-40 px-4 py-2.5 text-[11px] tracking-[0.18em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
+                    class="hidden border border-ink-40 px-4 py-2.5 text-[13px] tracking-[0.18em] uppercase text-ink-60 hover:text-ink-95 transition-colors"
                     data-i18n="formRemove"
                   >
                     Remove
                   </button>
                 </div>
-                <p id="payment-proof-filename" class="mt-2 hidden text-[11px] text-ink-60"></p>
-                <p id="payment-proof-error" class="mt-2 hidden text-[11px] font-medium text-[#c98a8a]"></p>
+                <p id="payment-proof-filename" class="mt-2 hidden text-[12px] text-ink-60"></p>
+                <p id="payment-proof-error" class="mt-2 hidden text-[12px] font-medium text-[#c98a8a]"></p>
                 <div id="payment-proof-preview-wrap" class="mt-4 hidden">
-                  <div class="text-[10px] tracking-[0.2em] uppercase text-ink-60" data-i18n="formPreview">Preview</div>
+                  <div class="text-[11px] tracking-[0.2em] uppercase text-ink-60" data-i18n="formPreview">Preview</div>
                   <img
                     id="payment-proof-preview"
                     alt="Payment proof preview"
@@ -629,7 +636,7 @@
               <button id="btn-submit-order" type="submit" class="w-full border border-ink-95 bg-ink-95 text-ink-10 px-4 py-4 text-base tracking-[0.22em] uppercase hover:bg-white transition-colors font-medium" data-i18n="formSubmit">
                 Submit
               </button>
-              <p class="text-center text-[10px] tracking-[0.2em] uppercase text-ink-60 mt-2" data-i18n="formTrust">Secure · Encrypted · No card stored</p>
+              <p class="text-center text-[11px] tracking-[0.2em] uppercase text-ink-60 mt-2" data-i18n="formTrust">Secure · Encrypted · No card stored</p>
             </form>
 
             <!-- SUCCESS STATE -->
@@ -638,13 +645,13 @@
                 <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="0.8" fill="none"/>
                 <path d="M 13 20 L 18 25 L 27 15" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <div class="mt-6 font-heading text-[32px] font-light tracking-[0.08em] text-ink-95" data-i18n="successTitle">Thank you</div>
-              <div class="mt-3 text-[12px] tracking-[0.2em] uppercase text-ink-60" data-i18n="successSub">Your order is received</div>
-              <p class="mt-6 max-w-sm mx-auto text-[13px] leading-[1.8] text-ink-95/80" data-i18n="successBody">We'll confirm your order by WhatsApp or email shortly. Pour slow, sip slow.</p>
-              <div class="mt-8 text-[11px] tracking-[0.22em] uppercase text-ink-60">
+              <div class="mt-6 font-heading text-[28px] font-light tracking-[0.08em] text-ink-95" data-i18n="successTitle">Thank you</div>
+              <div class="mt-3 text-[13px] tracking-[0.2em] uppercase text-ink-60" data-i18n="successSub">Your order is received</div>
+              <p class="mt-6 max-w-sm mx-auto text-[15px] leading-[1.75] text-ink-95/80" data-i18n="successBody">We'll confirm your order by WhatsApp or email shortly. Pour slow, sip slow.</p>
+              <div class="mt-8 text-[12px] tracking-[0.22em] uppercase text-ink-60">
                 <span data-i18n="chkOrder">Order</span> · <span id="success-order-id" class="tabular text-ink-95"></span>
               </div>
-              <button id="btn-success-close" type="button" class="mt-10 border border-ink-40 hover:border-ink-95 px-7 py-3 text-[11px] tracking-[0.28em] uppercase text-ink-95 transition-colors" data-i18n="successClose">Close</button>
+              <button id="btn-success-close" type="button" class="mt-10 border border-ink-40 hover:border-ink-95 px-7 py-3 text-[12px] tracking-[0.28em] uppercase text-ink-95 transition-colors" data-i18n="successClose">Close</button>
             </div>
           </div>
         </div>
@@ -660,7 +667,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260418_12");
+        var v = isLocal ? String(Date.now()) : (build || "20260418_17");
         window.__SHOP_V__ = v;
 
         function load(src) {

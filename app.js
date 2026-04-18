@@ -154,8 +154,8 @@
         const q = Number(state.cart[p.id] || 0);
         const incPlusContrast = invertQtyPlusForCheckoutOverlay();
         const incBtnClass = incPlusContrast
-          ? "h-9 w-9 box-border border-2 border-[#c8c8c8] bg-[#1a1a1a] text-[#fafafa] font-ui text-[17px] font-semibold leading-none hover:bg-[#252525] transition tabular-nums"
-          : "h-9 w-9 border border-[#222] bg-[#ededed] text-[#0a0a0a] font-ui text-[17px] font-semibold leading-none hover:bg-white transition tabular-nums";
+          ? "h-9 w-9 box-border border-2 border-[#c8c8c8] bg-[#1a1a1a] text-[#fafafa] font-ui text-[16px] font-semibold leading-none hover:bg-[#252525] transition tabular-nums"
+          : "h-9 w-9 border border-[#222] bg-[#ededed] text-[#0a0a0a] font-ui text-[16px] font-semibold leading-none hover:bg-white transition tabular-nums";
         const media = "";
         return `
           <article class="group cove-card border border-[#222] bg-[#111]">
@@ -163,18 +163,18 @@
             <div class="p-5">
               <div class="flex items-start justify-between gap-4">
                 <div class="min-w-0">
-                  <div class="font-heading font-light truncate text-[13px] tracking-[0.14em] uppercase text-ink-95">${escapeHtml(
+                  <div class="font-heading font-light truncate text-[14px] tracking-[0.12em] uppercase text-ink-95">${escapeHtml(
                     pickName(p)
                   )}</div>
-                  <div class="mt-2 font-heading font-light whitespace-pre-line text-[13px] leading-[1.75] tracking-[0.01em] text-ink-60">${escapeHtml(
+                  <div class="mt-2 font-heading font-light whitespace-pre-line text-[14px] leading-[1.7] tracking-[0.01em] text-ink-60">${escapeHtml(
                     pickDesc(p)
                   )}</div>
                 </div>
                 <div class="shrink-0 text-right">
-                  <div class="font-heading font-light text-[13px] tracking-[0.12em] text-ink-95 tabular-nums">${money(
+                  <div class="font-heading font-light text-[15px] tracking-[0.08em] text-ink-95 tabular-nums">${money(
                     p.price
                   )}</div>
-                  <div class="mt-1 font-heading font-light text-[11px] tracking-[0.06em] text-ink-60 tabular-nums">${escapeHtml(
+                  <div class="mt-1 font-heading font-light text-[12px] tracking-[0.06em] text-ink-60 tabular-nums">${escapeHtml(
                     packGramLabel
                   )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
                     tt("packsSuffix")
@@ -182,12 +182,12 @@
                 </div>
               </div>
               <div class="mt-5 flex items-center justify-between">
-                <div class="font-ui text-[11px] tracking-[0.08em] text-ink-60 tabular-nums">${q > 0 ? `${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}` : ""}</div>
+                <div class="font-ui text-[12px] tracking-[0.06em] text-ink-60 tabular-nums">${q > 0 ? `${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}` : ""}</div>
                 <div class="flex items-center gap-1">
-                  <button class="h-9 w-9 border border-[#222] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition font-ui text-[17px] font-medium leading-none tabular-nums" data-act="dec" data-id="${escapeAttr(
+                  <button class="h-9 w-9 border border-[#222] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition font-ui text-[16px] font-medium leading-none tabular-nums" data-act="dec" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Decrease">−</button>
-                  <div class="font-ui w-9 text-center text-[13px] font-medium tracking-normal text-ink-95 tabular-nums">${q}</div>
+                  <div class="font-ui w-9 text-center text-[14px] font-medium tracking-normal text-ink-95 tabular-nums">${q}</div>
                   <button class="${incBtnClass}" data-act="inc" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Increase">+</button>
@@ -258,8 +258,8 @@
             <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
           </svg>
-          <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
-          <div class="mt-2 text-[12px] leading-relaxed text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
+          <div class="text-[13px] tracking-[0.2em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
+          <div class="mt-2 text-[13px] leading-relaxed text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
         </div>`;
       if ($("btn-checkout")) $("btn-checkout").disabled = true;
       return;
@@ -271,14 +271,14 @@
         return `
           <div class="flex items-start justify-between gap-3 py-3 border-b border-[#1a1a1a] last:border-b-0">
             <div class="min-w-0">
-              <div class="truncate text-[13px] tracking-[0.14em] uppercase text-ink-95">${escapeHtml(
+              <div class="truncate text-[14px] tracking-[0.12em] uppercase text-ink-95">${escapeHtml(
                 pickName(L.product)
               )}</div>
-              <div class="mt-1 text-[12px] text-ink-60">${money(
+              <div class="mt-1 text-[13px] text-ink-60">${money(
                 L.product.price
               )} · x${L.qty}</div>
             </div>
-            <div class="shrink-0 text-[13px] text-ink-95 tabular-nums">${money(
+            <div class="shrink-0 text-[14px] text-ink-95 tabular-nums">${money(
               L.product.price * L.qty
             )}</div>
           </div>
