@@ -7,6 +7,7 @@ window.SHOP_CATALOG = [
     nameZh: "Cove Nutty",
     descriptionZh: "堅果精選 × 10",
     price: 120,
+    imageUrl: "cove-nutty.svg",
     enabled: true,
   },
   {
@@ -17,6 +18,7 @@ window.SHOP_CATALOG = [
     nameZh: "Cove Bloom",
     descriptionZh: "2款花果精選 × 5",
     price: 150,
+    imageUrl: "cove-bloom.svg",
     enabled: true,
   },
 ];

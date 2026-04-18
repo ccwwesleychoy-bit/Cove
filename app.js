@@ -162,7 +162,7 @@
             <div class="aspect-[4/5] bg-[#141414] overflow-hidden relative">
               <img src="${escapeAttr(
                 img
-              )}" alt="" loading="lazy" class="h-full w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-700" onerror="this.parentElement.remove()" />
+              )}" alt="" loading="lazy" class="h-full w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-700" onerror="this.remove()" />
             </div>
           `
           : `
@@ -183,15 +183,15 @@
             <div class="p-6">
               <div class="flex items-start justify-between gap-4">
                 <div class="min-w-0 flex-1">
-                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:20px;letter-spacing:0.06em;color:#ededed">${escapeHtml(
+                  <div class="font-heading font-light text-xl tracking-[0.06em] text-ink-95 leading-snug">${escapeHtml(
                     pickName(p)
                   )}</div>
-                  <div class="mt-1.5 text-[11px] tracking-[0.16em] text-[#666]">${escapeHtml(
+                  <div class="font-heading mt-1.5 text-[11px] tracking-[0.16em] text-ink-60 font-light">${escapeHtml(
                     packGramLabel
                   )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
                     tt("packsSuffix")
                   )}</div>
-                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:15px;line-height:1.85;letter-spacing:0.02em;color:#9a9a9a;margin-top:10px;white-space:pre-line">${escapeHtml(
+                  <div class="font-heading mt-2.5 text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light whitespace-pre-line">${escapeHtml(
                     pickDesc(p)
                   )}</div>
                 </div>
@@ -199,16 +199,16 @@
 
               <div class="mt-6 pt-5 border-t border-[#222] flex items-center justify-between gap-4">
                 <div>
-                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:24px;line-height:1;letter-spacing:0.04em;color:#ededed;font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1">${money(
+                  <div class="font-heading font-light text-2xl leading-none tracking-[0.04em] text-ink-95 tabular-nums">${money(
                     p.price
                   )}</div>
-                  ${q > 0 ? `<div class="mt-1.5 text-[11px] tracking-[0.14em] text-[#666]">${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}</div>` : ""}
+                  ${q > 0 ? `<div class="font-heading mt-1.5 text-[11px] tracking-[0.14em] text-ink-60 font-light">${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}</div>` : ""}
                 </div>
                 <div class="flex items-center gap-0.5">
                   <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition text-[16px] leading-none" data-act="dec" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Decrease">−</button>
-                  <div class="w-8 text-center text-[13px] tracking-[0.06em] text-[#ededed] tabular-nums" style="font-family:'Cormorant Garamond',Georgia,serif;font-variant-numeric:lining-nums">${q}</div>
+                  <div class="font-heading w-8 text-center text-[13px] font-light tracking-[0.06em] text-ink-95 tabular-nums">${q}</div>
                   <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition text-[16px] leading-none" data-act="inc" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Increase">+</button>
