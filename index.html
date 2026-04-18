@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260418_5">
+<html lang="en" translate="no" data-cove-build="20260418_12">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -161,9 +161,9 @@
       }
       /* Focus rings — subtle but visible */
       :focus-visible { outline: 1px solid #EDEDED; outline-offset: 3px; }
-      /* Product card hover lift */
-      .cove-card { transition: border-color 300ms ease, background-color 300ms ease, transform 400ms ease; }
-      .cove-card:hover { border-color: #444; background-color: #141414; }
+      /* Product card hover */
+      .cove-card { transition: border-color 300ms ease, background-color 300ms ease; }
+      .cove-card:hover { border-color: #3a3a3a; background-color: #141414; }
       /* Free-ship progress bar */
       .cove-progress-track { height: 2px; background: #2a2a2a; position: relative; overflow: hidden; }
       .cove-progress-fill { position: absolute; inset: 0 auto 0 0; background: #EDEDED; transition: width 500ms ease; }
@@ -189,7 +189,7 @@
     <!-- 讓 Tailwind Play CDN 在首屏就產出 app.js 會用到的工具類（與本機即時掃描行為一致） -->
     <span
       id="cove-tailwind-safelist"
-      class="sr-only pointer-events-none font-ui font-heading font-semibold font-medium font-normal tabular-nums text-xl text-2xl text-[10px] text-[11px] text-[12px] text-[13px] text-[14px] text-[15px] text-[17px] text-[18px] tracking-[0.01em] tracking-[0.02em] tracking-[0.03em] tracking-[0.06em] tracking-[0.08em] tracking-[0.12em] tracking-[0.14em] tracking-[0.22em] leading-snug leading-none leading-[1.75] whitespace-pre-line aspect-[4/5] group-hover:opacity-100 group-hover:scale-[1.02] duration-700"
+      class="sr-only pointer-events-none font-ui font-heading font-semibold font-medium font-normal font-light italic tabular-nums text-[10px] text-[11px] text-[12px] text-[13px] text-[14px] text-[16px] text-[22px] tracking-[0.02em] tracking-[0.04em] tracking-[0.06em] tracking-[0.3em] tracking-[0.32em] leading-none leading-[1.05] leading-[1.7] whitespace-pre-line whitespace-nowrap divide-y divide-ink-40 border-y first:pt-6 last:pb-6"
       aria-hidden="true"
     ></span>
     <header class="sticky top-0 z-40 bg-[#1A1A1A]/80 backdrop-blur border-b border-ink-40">
@@ -261,7 +261,7 @@
       </section>
 
       <!-- FEATURES / TRUST STRIP -->
-      <section aria-label="Features" class="cove-reveal py-10 border-y border-ink-40">
+      <section aria-label="Features" class="cove-reveal py-12 border-y border-ink-40">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div class="cove-feature flex flex-col items-center gap-2">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -302,10 +302,10 @@
             <div class="flex items-end justify-between border-b border-ink-40 pb-4">
               <div>
                 <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-60" data-i18n="shopLabel">Shop</div>
-                <h1 class="mt-3 font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="shopTitle">Drip Bag Set</h1>
+                <h1 class="mt-2 font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="shopTitle">Drip Bag Set</h1>
               </div>
             </div>
-            <div id="shop-grid" class="mt-10"></div>
+            <div id="shop-grid" class="mt-8"></div>
           </div>
 
           <aside class="lg:col-span-4 lg:pt-20">
@@ -338,12 +338,12 @@
       </section>
 
       <!-- ABOUT -->
-      <section id="about" class="cove-reveal py-20 border-t border-ink-40">
+      <section id="about" class="cove-reveal py-20">
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVE</h1>
         </div>
 
-        <div class="mt-16 grid lg:grid-cols-12 gap-10 items-start">
+        <div class="mt-10 grid lg:grid-cols-12 gap-10 items-start">
           <!-- Monogram column -->
           <div class="lg:col-span-4 flex lg:justify-center">
             <svg viewBox="0 0 40 40" class="h-24 w-24 text-ink-95/70" aria-hidden="true">
@@ -371,44 +371,8 @@
         </div>
       </section>
 
-      <!-- HOW TO BREW -->
-      <section id="brew" class="cove-reveal py-20 border-t border-ink-40">
-        <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="brewTitle">How to Brew</h1>
-        </div>
-        <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
-          <div class="flex flex-col gap-4">
-            <div class="cove-step-num">01</div>
-            <div>
-              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep1Title">888 Balanced</div>
-              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep1Lead">Clean, balanced, classic</div>
-            </div>
-            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep1Desc">The Japanese pour-over rhythm. Bloom with a small pour (about 30g) for thirty seconds, then pour in three even rounds to 80% fill, waiting between each for the water to draw through. Produces a clear, balanced cup with sweetness and definition.</p>
-          </div>
-          <div class="flex flex-col gap-4">
-            <div class="cove-step-num">02</div>
-            <div>
-              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep2Title">Steep & Filter</div>
-              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep2Lead">Full-bodied, forgiving</div>
-            </div>
-            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep2Desc">Immersion-style brewing. Tip the grounds into your cup, pour in hot water to the recommended weight, and stir gently. Steep for about two minutes, then pass the liquid back through the empty bag as a filter. Rounder mouthfeel, richer body — forgiving of timing.</p>
-          </div>
-          <div class="flex flex-col gap-4">
-            <div class="cove-step-num">03</div>
-            <div>
-              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep3Title">Quick Brew</div>
-              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep3Lead">Simplest, light-bodied</div>
-            </div>
-            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep3Desc">The everyday method. Set the bag over your cup and fill with hot water. As the level drops, top it up again; continue until you've used 180–200g of water in total. Let the final pour drain fully before lifting the bag. Light, smooth, unfussy.</p>
-          </div>
-        </div>
-        <div class="mt-12 pt-6 border-t border-ink-40 flex justify-center">
-          <p class="font-heading text-[11px] tracking-[0.28em] uppercase text-ink-60 font-light" data-i18n="brewNote">Water 180–200g · Temperature 90–95°C · Grounds 10–12g</p>
-        </div>
-      </section>
-
       <!-- CONTACT -->
-      <section id="contact" class="cove-reveal py-20 pb-28 lg:pb-20 border-t border-ink-40">
+      <section id="contact" class="cove-reveal py-20 pb-28 lg:pb-20">
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="contactTitle">Contact</h1>
         </div>
@@ -474,7 +438,6 @@
             <div class="text-[10px] tracking-[0.24em] uppercase text-ink-60 mb-4" data-i18n="footerExplore">Explore</div>
             <ul class="flex flex-col gap-2 text-[12px] text-ink-95/80">
               <li><a href="#shop" class="hover:text-ink-95 transition-colors" data-i18n="navShop">Shop</a></li>
-              <li><a href="#brew" class="hover:text-ink-95 transition-colors" data-i18n="brewTitle">How to Brew</a></li>
               <li><a href="#about" class="hover:text-ink-95 transition-colors" data-i18n="navAbout">About</a></li>
               <li><a href="#contact" class="hover:text-ink-95 transition-colors" data-i18n="navContact">Contact</a></li>
             </ul>
@@ -697,7 +660,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260418_5");
+        var v = isLocal ? String(Date.now()) : (build || "20260418_12");
         window.__SHOP_V__ = v;
 
         function load(src) {

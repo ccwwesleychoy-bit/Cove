@@ -156,60 +156,39 @@
         const incBtnClass = incPlusContrast
           ? "h-9 w-9 box-border border-2 border-[#c8c8c8] bg-[#1a1a1a] text-[#fafafa] font-ui text-[17px] font-semibold leading-none hover:bg-[#252525] transition tabular-nums"
           : "h-9 w-9 border border-[#222] bg-[#ededed] text-[#0a0a0a] font-ui text-[17px] font-semibold leading-none hover:bg-white transition tabular-nums";
-        const img = String(p.imageUrl || "").trim();
-        const media = img
-          ? `
-            <div class="aspect-[4/5] bg-[#141414] overflow-hidden relative">
-              <img src="${escapeAttr(
-                img
-              )}" alt="" loading="lazy" class="h-full w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-700" onerror="this.remove()" />
-            </div>
-          `
-          : `
-            <div class="aspect-[4/5] bg-[#141414] overflow-hidden relative grid place-items-center">
-              <svg viewBox="0 0 40 40" class="h-10 w-10 text-ink-60" aria-hidden="true">
-                <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-                <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
-              </svg>
-            </div>
-          `;
-        const inCartBadge = q > 0
-          ? `<span class="absolute top-3 right-3 bg-ink-95 text-ink-10 font-ui text-[10px] tracking-[0.12em] uppercase px-2 py-1 font-medium tabular-nums">${q} ${escapeHtml(tt("inCart"))}</span>`
-          : "";
+        const media = "";
         return `
-          <article class="group cove-card border border-[#222] bg-[#111] relative">
-            ${inCartBadge}
+          <article class="group cove-card border border-[#222] bg-[#111]">
             ${media}
-            <div class="p-6">
+            <div class="p-5">
               <div class="flex items-start justify-between gap-4">
-                <div class="min-w-0 flex-1">
-                  <div class="font-heading font-normal text-xl tracking-[0.03em] text-ink-95 leading-snug">${escapeHtml(
+                <div class="min-w-0">
+                  <div class="font-heading font-light truncate text-[13px] tracking-[0.14em] uppercase text-ink-95">${escapeHtml(
                     pickName(p)
                   )}</div>
-                  <div class="font-ui mt-1.5 text-[12px] tracking-[0.06em] text-ink-60 font-normal tabular-nums">${escapeHtml(
+                  <div class="mt-2 font-heading font-light whitespace-pre-line text-[13px] leading-[1.75] tracking-[0.01em] text-ink-60">${escapeHtml(
+                    pickDesc(p)
+                  )}</div>
+                </div>
+                <div class="shrink-0 text-right">
+                  <div class="font-heading font-light text-[13px] tracking-[0.12em] text-ink-95 tabular-nums">${money(
+                    p.price
+                  )}</div>
+                  <div class="mt-1 font-heading font-light text-[11px] tracking-[0.06em] text-ink-60 tabular-nums">${escapeHtml(
                     packGramLabel
                   )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
                     tt("packsSuffix")
                   )}</div>
-                  <div class="font-heading mt-2.5 text-[15px] leading-[1.75] tracking-[0.01em] text-ink-60 font-normal whitespace-pre-line">${escapeHtml(
-                    pickDesc(p)
-                  )}</div>
                 </div>
               </div>
-
-              <div class="mt-6 pt-5 border-t border-[#222] flex items-center justify-between gap-4">
-                <div>
-                  <div class="font-ui font-medium text-2xl leading-none tracking-[0.02em] text-ink-95 tabular-nums">${money(
-                    p.price
-                  )}</div>
-                  ${q > 0 ? `<div class="font-ui mt-1.5 text-[11px] tracking-[0.08em] text-ink-60 font-normal tabular-nums">${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}</div>` : ""}
-                </div>
-                <div class="flex items-center gap-0.5">
-                  <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition font-ui text-[18px] font-medium leading-none tabular-nums" data-act="dec" data-id="${escapeAttr(
+              <div class="mt-5 flex items-center justify-between">
+                <div class="font-ui text-[11px] tracking-[0.08em] text-ink-60 tabular-nums">${q > 0 ? `${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}` : ""}</div>
+                <div class="flex items-center gap-1">
+                  <button class="h-9 w-9 border border-[#222] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition font-ui text-[17px] font-medium leading-none tabular-nums" data-act="dec" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Decrease">−</button>
-                  <div class="font-ui w-8 text-center text-[14px] font-medium tracking-normal text-ink-95 tabular-nums">${q}</div>
-                  <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition font-ui text-[18px] font-medium leading-none tabular-nums" data-act="inc" data-id="${escapeAttr(
+                  <div class="font-ui w-9 text-center text-[13px] font-medium tracking-normal text-ink-95 tabular-nums">${q}</div>
+                  <button class="${incBtnClass}" data-act="inc" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Increase">+</button>
                 </div>
