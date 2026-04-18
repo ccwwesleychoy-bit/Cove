@@ -1,6 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
-<html lang="en" translate="no">
+<!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
+<html lang="en" translate="no" data-cove-build="20260418_5">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -17,6 +18,28 @@
     <script>
       window.tailwind = window.tailwind || {};
       window.tailwind.config = {
+        /* 僅在 app.js 動態插入的類別：保險寫入，避免 Play CDN 漏掃 */
+        safelist: [
+          "font-ui",
+          "font-semibold",
+          "tracking-normal",
+          "aspect-[4/5]",
+          "group-hover:scale-[1.02]",
+          "text-ink-60/70",
+          "border-[#1a1a1a]",
+          "border-[#2a2a2a]",
+          "border-[#222]",
+          "bg-[#0d0d0d]",
+          "bg-[#111]",
+          "bg-[#141414]",
+          "bg-[#1a1a1a]",
+          "bg-[#ededed]",
+          "text-[#aaa]",
+          "text-[#fafafa]",
+          "text-[#0a0a0a]",
+          "border-[#c8c8c8]",
+          "hover:bg-[#252525]",
+        ],
         theme: {
           extend: {
             colors: {
@@ -33,6 +56,15 @@
               display: ["Raleway", "ui-sans-serif", "system-ui", "Helvetica Neue", "Arial", "sans-serif"],
               heading: ["Cormorant Garamond", "Noto Serif TC", "Georgia", "serif"],
               body: ["Cormorant Garamond", "Noto Serif TC", "Georgia", "serif"],
+              /* Shop 小字、價格、數量鈕：用系統無襯線，數字與 ± 才清楚 */
+              ui: [
+                "Segoe UI",
+                "ui-sans-serif",
+                "system-ui",
+                "Helvetica Neue",
+                "Arial",
+                "sans-serif",
+              ],
             },
           },
         },
@@ -154,6 +186,12 @@
     </style>
   </head>
   <body class="notranslate font-body bg-[#1A1A1A] text-ink-95 antialiased" translate="no">
+    <!-- 讓 Tailwind Play CDN 在首屏就產出 app.js 會用到的工具類（與本機即時掃描行為一致） -->
+    <span
+      id="cove-tailwind-safelist"
+      class="sr-only pointer-events-none font-ui font-heading font-semibold font-medium font-normal tabular-nums text-xl text-2xl text-[10px] text-[11px] text-[12px] text-[13px] text-[14px] text-[15px] text-[17px] text-[18px] tracking-[0.01em] tracking-[0.02em] tracking-[0.03em] tracking-[0.06em] tracking-[0.08em] tracking-[0.12em] tracking-[0.14em] tracking-[0.22em] leading-snug leading-none leading-[1.75] whitespace-pre-line aspect-[4/5] group-hover:opacity-100 group-hover:scale-[1.02] duration-700"
+      aria-hidden="true"
+    ></span>
     <header class="sticky top-0 z-40 bg-[#1A1A1A]/80 backdrop-blur border-b border-ink-40">
       <div class="mx-auto max-w-6xl px-4">
         <div class="h-16 flex items-center justify-between">
@@ -654,7 +692,12 @@
       (function () {
         var isLocal =
           location.hostname === "127.0.0.1" || location.hostname === "localhost";
-        var v = isLocal ? String(Date.now()) : "20260418_3";
+        var build = "";
+        try {
+          build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
+        } catch (e) {}
+        /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
+        var v = isLocal ? String(Date.now()) : (build || "20260418_5");
         window.__SHOP_V__ = v;
 
         function load(src) {
