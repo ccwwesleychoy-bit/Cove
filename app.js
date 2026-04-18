@@ -259,7 +259,7 @@
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
           </svg>
           <div class="text-[13px] tracking-[0.2em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
-          <div class="mt-2 text-[13px] leading-relaxed text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
+          <div class="mt-2 whitespace-pre-line text-[13px] leading-relaxed text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
         </div>`;
       if ($("btn-checkout")) $("btn-checkout").disabled = true;
       return;

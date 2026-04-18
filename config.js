@@ -10,6 +10,7 @@ window.SHOP_CONFIG = {
   currencyLabel: "HK$",
   // English only; shown in footer + checkout (edit wording here).
   disclaimerNote:
+    "Orders will be shipped within 7 days after confirmation.\n\n" +
     "All sales are final once shipped.\n\n" +
     "As drip bags contain fresh roasted coffee, returns and refunds are not accepted except in cases of manufacturing defects or damage during delivery.\n\n" +
     "We appreciate your understanding.",

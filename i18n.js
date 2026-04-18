@@ -40,7 +40,7 @@
       brewNote: "Water 180–200g · Temperature 90–95°C",
       inCart: "in cart",
       lineTotal: "Line",
-      cartEmptyHint: "Add a drip bag to begin",
+      cartEmptyHint: "Add a drip bag set to begin",
       footerTagline: "Good coffee, simply done.",
       footerExplore: "Explore",
       footerRights: "All rights reserved",
@@ -105,6 +105,7 @@
       remarkTemplate:
         "Please put the Order ID in the transfer remark.\n(Remark: {{id}})",
       disclaimer:
+        "Orders will be shipped within 7 days after confirmation.\n\n" +
         "All sales are final once shipped.\n\n" +
         "As drip bags contain fresh roasted coffee, returns and refunds are not accepted except in cases of manufacturing defects or damage during delivery.\n\n" +
         "We appreciate your understanding.",
@@ -141,7 +142,7 @@
       brewNote: "建議水量 180–200g · 水溫 90–95°C",
       inCart: "已加入",
       lineTotal: "小計",
-      cartEmptyHint: "選一款掛耳包開始",
+      cartEmptyHint: "選一款掛耳包組合開始",
       footerTagline: "好咖啡，不複雜。",
       footerExplore: "瀏覽",
       footerRights: "版權所有",
@@ -204,6 +205,7 @@
       /** 訂單摘要預覽：對應 config.js 預設英文 fpsNote 那一行 */
       fpsNoteSummaryZh: "請於轉帳備註填寫訂單編號。",
       disclaimer:
+        "貨品將於訂單確認後 7 天內發送。\n\n" +
         "貨品寄出後，恕不接受退款或退換。\n\n" +
         "掛耳包內為新鮮烘焙咖啡，除製造瑕疵或運送損毀外，恕不接受退貨退款。\n\n" +
         "感謝你的理解。",

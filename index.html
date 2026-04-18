@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260418_17">
+<html lang="en" translate="no" data-cove-build="20260418_20">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -229,18 +229,18 @@
     <main class="mx-auto max-w-6xl px-4">
       <!-- HOME -->
       <section id="home" class="min-h-[calc(100vh-4rem)] grid place-items-center relative">
-        <div class="text-center select-none relative z-10">
+        <div class="text-center select-none relative z-10 -translate-y-3 md:-translate-y-4">
           <!-- Monogram above wordmark -->
-          <svg viewBox="0 0 40 40" class="mx-auto h-12 w-12 text-ink-95/90 mb-8" aria-hidden="true">
+          <svg viewBox="0 0 40 40" class="mx-auto h-12 w-12 text-ink-95/90 mb-6" aria-hidden="true">
             <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.6" fill="none" stroke-linecap="round"/>
           </svg>
 
-          <div class="text-[12px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
+          <div class="mb-6 text-[12px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
 
-          <!-- Wordmark：Raleway Thin (weight 100) -->
-          <div class="cove-hero-wordmark mt-6 text-[clamp(56px,9vw,118px)] leading-[0.92]">
-            <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.18em]">
+          <!-- Wordmark：Raleway Thin (100)；上下留白對稱 -->
+          <div class="cove-hero-wordmark flex flex-col items-center text-[clamp(56px,9vw,118px)] leading-none py-7">
+            <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.18em] leading-none">
               <span class="text-center">C</span>
               <span class="text-center">O</span>
               <span class="text-center">V</span>
@@ -249,9 +249,9 @@
           </div>
 
           <!-- Hairline divider -->
-          <div class="mx-auto mt-10 h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
+          <div class="mx-auto mt-0 h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
 
-          <div class="mt-6 text-[12px] tracking-[0.28em] uppercase text-ink-60">
+          <div class="mt-5 text-[12px] tracking-[0.28em] uppercase text-ink-60">
             <div class="mx-auto flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-1">
               <span data-i18n="heroTag1">Simple brew</span>
               <span class="text-ink-95/70" aria-hidden="true">·</span>
@@ -260,7 +260,7 @@
           </div>
 
           <!-- Primary CTA -->
-          <a href="#shop" class="group mt-12 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[12px] tracking-[0.24em] uppercase text-ink-95 transition-colors">
+          <a href="#shop" class="group mt-10 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[12px] tracking-[0.24em] uppercase text-ink-95 transition-colors">
             <span data-i18n="heroCta">Shop Collection</span>
             <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
           </a>
@@ -667,7 +667,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260418_17");
+        var v = isLocal ? String(Date.now()) : (build || "20260418_20");
         window.__SHOP_V__ = v;
 
         function load(src) {
