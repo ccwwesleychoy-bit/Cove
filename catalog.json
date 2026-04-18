@@ -9,7 +9,7 @@
     "descriptionZh": "堅果精選 × 10",
     "flavorEn": "",
     "flavorZh": "",
-    "imageUrl": "",
+    "imageUrl": "images/cove-nutty.svg",
     "enabled": true
   },
   {
@@ -22,7 +22,7 @@
     "descriptionZh": "2款花果精選 × 5",
     "flavorEn": "",
     "flavorZh": "",
-    "imageUrl": "",
+    "imageUrl": "images/cove-bloom.svg",
     "enabled": true
   }
 ]

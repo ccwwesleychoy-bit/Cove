@@ -7,10 +7,11 @@
     <meta name="google" content="notranslate" />
     <meta name="theme-color" content="#1A1A1A" />
     <title data-i18n="siteTitle">Cove</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+TC:wght@300;400&family=Raleway:wght@100;200;300&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -29,31 +30,9 @@
               },
             },
             fontFamily: {
-              heading: [
-                "Space Grotesk",
-                "Inter",
-                "ui-sans-serif",
-                "system-ui",
-                "-apple-system",
-                "SF Pro Display",
-                "Segoe UI",
-                "Helvetica Neue",
-                "Arial",
-                "Noto Sans",
-                "sans-serif",
-              ],
-              body: [
-                "Inter",
-                "ui-sans-serif",
-                "system-ui",
-                "-apple-system",
-                "SF Pro Display",
-                "Segoe UI",
-                "Helvetica Neue",
-                "Arial",
-                "Noto Sans",
-                "sans-serif",
-              ],
+              display: ["Raleway", "ui-sans-serif", "system-ui", "Helvetica Neue", "Arial", "sans-serif"],
+              heading: ["Cormorant Garamond", "Noto Serif TC", "Georgia", "serif"],
+              body: ["Cormorant Garamond", "Noto Serif TC", "Georgia", "serif"],
             },
           },
         },
@@ -74,6 +53,10 @@
         font-size: 16px;
       }
       .tabular { font-variant-numeric: tabular-nums; }
+      /* Force lining figures everywhere — prevents Cormorant's old-style figures from looking inconsistent */
+      body, input, textarea, button, select { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+      /* ZH: use Noto Serif TC for native rendering (Cormorant covers Latin, Noto Serif TC covers CJK) */
+      html[data-cove-lang="zh-Hant"] body { letter-spacing: 0.02em; }
       [hidden] { display:none !important; }
       /* 結帳開啟時：Shop 數量鈕不可蓋過 modal（否則會疊在 PayMe / 表單上） */
       body.checkout-open main,
@@ -138,13 +121,49 @@
         min-width: 0;
         text-align: left;
       }
+      /* Scroll fade-in */
+      .cove-reveal { opacity: 0; transform: translateY(12px); transition: opacity 900ms ease, transform 900ms ease; }
+      .cove-reveal.is-in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .cove-reveal { opacity: 1; transform: none; transition: none; }
+      }
+      /* Focus rings — subtle but visible */
+      :focus-visible { outline: 1px solid #EDEDED; outline-offset: 3px; }
+      /* Product card hover lift */
+      .cove-card { transition: border-color 300ms ease, background-color 300ms ease, transform 400ms ease; }
+      .cove-card:hover { border-color: #444; background-color: #141414; }
+      /* Free-ship progress bar */
+      .cove-progress-track { height: 2px; background: #2a2a2a; position: relative; overflow: hidden; }
+      .cove-progress-fill { position: absolute; inset: 0 auto 0 0; background: #EDEDED; transition: width 500ms ease; }
+      /* How-to-brew numerals — refined editorial: lining figures, italic for elegance */
+      .cove-step-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300;
+        font-style: italic;
+        font-size: 42px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: #7a7a7a;
+        font-variant-numeric: lining-nums;
+        font-feature-settings: "lnum" 1;
+      }
+      /* Pull-quote for About closer */
+      .cove-pullquote { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: 0.04em; }
+      /* Feature strip icon line */
+      .cove-feature svg { flex-shrink: 0; }
     </style>
   </head>
   <body class="notranslate font-body bg-[#1A1A1A] text-ink-95 antialiased" translate="no">
     <header class="sticky top-0 z-40 bg-[#1A1A1A]/80 backdrop-blur border-b border-ink-40">
       <div class="mx-auto max-w-6xl px-4">
         <div class="h-16 flex items-center justify-between">
-          <a href="#home" class="font-heading text-[12px] tracking-[0.26em] uppercase">Cove</a>
+          <a href="#home" class="flex items-center gap-3 text-ink-95 hover:opacity-80 transition-opacity" aria-label="COVE — Home">
+            <svg viewBox="0 0 40 40" class="h-6 w-6" aria-hidden="true">
+              <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.7" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span class="font-display text-[15px] tracking-[0.38em] font-thin">COVE</span>
+          </a>
           <nav class="i18n-nav-wrap flex items-center gap-4 sm:gap-6 text-[12px] tracking-[0.22em] uppercase text-ink-60">
             <a href="#shop" class="hover:text-ink-95 transition-colors" data-i18n="navShop">Shop</a>
             <a href="#about" class="hover:text-ink-95 transition-colors" data-i18n="navAbout">About</a>
@@ -164,36 +183,88 @@
 
     <main class="mx-auto max-w-6xl px-4">
       <!-- HOME -->
-      <section id="home" class="min-h-[calc(100vh-4rem)] grid place-items-center">
-        <div class="text-center select-none">
-          <div class="text-[11px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
-          <div class="mt-6 font-heading text-[clamp(64px,10vw,140px)] leading-[0.92] font-medium">
-            <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.1em]">
+      <section id="home" class="min-h-[calc(100vh-4rem)] grid place-items-center relative">
+        <div class="text-center select-none relative z-10">
+          <!-- Monogram above wordmark -->
+          <svg viewBox="0 0 40 40" class="mx-auto h-12 w-12 text-ink-95/90 mb-8" aria-hidden="true">
+            <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.6" fill="none" stroke-linecap="round"/>
+          </svg>
+
+          <div class="text-[11px] tracking-[0.36em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
+
+          <!-- Wordmark: switched to display serif for quiet-luxury feel -->
+          <div class="mt-6 font-display text-[clamp(64px,10vw,140px)] leading-[0.92] font-thin">
+            <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.18em]">
               <span class="text-center">C</span>
               <span class="text-center">O</span>
               <span class="text-center">V</span>
               <span class="text-center">E</span>
             </div>
           </div>
-          <div class="mt-8 font-heading text-[11px] tracking-[0.32em] uppercase text-ink-60">
+
+          <!-- Hairline divider -->
+          <div class="mx-auto mt-10 h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
+
+          <div class="mt-6 text-[11px] tracking-[0.32em] uppercase text-ink-60">
             <div class="mx-auto flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-1">
               <span data-i18n="heroTag1">Simple brew</span>
               <span class="text-ink-95/70" aria-hidden="true">·</span>
               <span data-i18n="heroTag2">Easy enjoy</span>
             </div>
           </div>
-          <a href="#shop" class="mt-10 inline-block text-[11px] tracking-[0.22em] uppercase text-ink-60 hover:text-ink-95 transition-colors" data-i18n="heroScroll">Scroll ↓</a>
+
+          <!-- Primary CTA -->
+          <a href="#shop" class="group mt-12 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[11px] tracking-[0.28em] uppercase text-ink-95 transition-colors" data-i18n="heroCta">
+            <span>Shop Collection</span>
+            <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- FEATURES / TRUST STRIP -->
+      <section aria-label="Features" class="cove-reveal py-10 border-y border-ink-40">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M3 7h13l3 4v6h-3m-10 0H3V7zm10 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featShipTitle">Free Shipping</div>
+            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featShipSub">Orders over HK$240</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5l-2.1 2.1M8.6 15.4l-2.1 2.1m12 0l-2.1-2.1M8.6 8.6L6.5 6.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featFreshTitle">Freshly Roasted</div>
+            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featFreshSub">Packed within 5 days of roasting</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featPayTitle">Secure Payment</div>
+            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featPaySub">PayMe · FPS</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M6 3v3a6 6 0 1 0 12 0V3M8 21h8m-4-6v6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-95" data-i18n="featOriginTitle">Single Origin</div>
+            <div class="text-[10px] tracking-[0.16em] text-ink-60" data-i18n="featOriginSub">New lots often</div>
+          </div>
         </div>
       </section>
 
       <!-- SHOP -->
-      <section id="shop" class="py-12">
+      <section id="shop" class="cove-reveal py-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div class="lg:col-span-8">
             <div class="flex items-end justify-between border-b border-ink-40 pb-4">
               <div>
-                <div class="font-heading text-[16px] tracking-[0.12em] uppercase text-ink-60" data-i18n="shopLabel">Shop</div>
-                <h1 class="mt-3 font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="shopTitle">Drip Bag Set</h1>
+                <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-60" data-i18n="shopLabel">Shop</div>
+                <h1 class="mt-3 font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="shopTitle">Drip Bag Set</h1>
               </div>
             </div>
             <div id="shop-grid" class="mt-10"></div>
@@ -215,9 +286,12 @@
                     <div data-i18n="cartTotal">Total</div><div id="cart-total" class="text-right tabular text-ink-95">HK$0</div>
                   </div>
                   <div id="cart-ship-rule" class="mt-4 text-[11px] text-ink-60"></div>
+                  <div id="cart-progress" class="mt-3 cove-progress-track" hidden>
+                    <div id="cart-progress-fill" class="cove-progress-fill" style="width:0%"></div>
+                  </div>
                 </div>
                 <div class="mt-8">
-                  <button id="btn-checkout" type="button" class="w-full border border-ink-40 bg-ink-10 px-4 py-3 text-[12px] tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled data-i18n="cartCheckout">Checkout</button>
+                  <button id="btn-checkout" type="button" class="w-full border border-ink-95 bg-ink-95 text-ink-10 px-4 py-4 text-[12px] tracking-[0.22em] uppercase hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-ink-60 disabled:border-ink-40 font-medium" disabled data-i18n="cartCheckout">Checkout</button>
                 </div>
               </div>
             </div>
@@ -226,34 +300,84 @@
       </section>
 
       <!-- ABOUT -->
-      <section id="about" class="py-12">
+      <section id="about" class="cove-reveal py-20 border-t border-ink-40">
         <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="aboutTitle">About COVE</h1>
+          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVE</h1>
         </div>
-        <div class="mt-8 max-w-2xl">
-          <!-- In-stanza: <br> + leading; between stanzas: flex gap only (same top/bottom spacing every time). -->
-          <div class="flex flex-col gap-6 font-heading text-[14px] leading-[1.65] tracking-[0.10em] text-ink-95/90">
-            <div data-i18n="about1">COVE is about simple coffee, done well.</div>
-            <div data-i18n="about2">
-              We select quality single origin coffees and pack them into easy drip bags.
+
+        <div class="mt-16 grid lg:grid-cols-12 gap-10 items-start">
+          <!-- Monogram column -->
+          <div class="lg:col-span-4 flex lg:justify-center">
+            <svg viewBox="0 0 40 40" class="h-24 w-24 text-ink-95/70" aria-hidden="true">
+              <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+              <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- Copy column — first three lines preserved exactly -->
+          <div class="lg:col-span-8 max-w-2xl">
+            <div class="flex flex-col gap-6 font-heading text-[18px] leading-[1.95] tracking-[0.02em] text-ink-95/90">
+              <div data-i18n="about1">COVE is about simple coffee, done well.</div>
+              <div data-i18n="about2">
+                We select quality single origin coffees and pack them into easy drip bags.
+              </div>
+              <div data-i18n="about3">
+                So you can enjoy a good cup in your own little cove — anywhere, anytime.
+              </div>
             </div>
-            <div data-i18n="about3">
-              So you can enjoy a good cup in your own little cove — anywhere, anytime.
-            </div>
-            <div data-i18n="about4">Simple. Pure. COVE.</div>
+            <!-- Hairline -->
+            <div class="mt-10 mb-8 h-px w-16 bg-ink-60/50"></div>
+            <!-- Closing line — pull-quote treatment -->
+            <div class="font-heading text-[clamp(22px,3vw,34px)] tracking-[0.18em] font-light text-ink-95" data-i18n="about4">Simple. Pure. COVE.</div>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="pt-12 pb-28 lg:py-12">
+      <!-- HOW TO BREW -->
+      <section id="brew" class="cove-reveal py-20 border-t border-ink-40">
         <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[16px] tracking-[0.12em] uppercase" data-i18n="contactTitle">Contact</h1>
+          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="brewTitle">How to Brew</h1>
+        </div>
+        <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
+          <div class="flex flex-col gap-4">
+            <div class="cove-step-num">01</div>
+            <div>
+              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep1Title">888 Balanced</div>
+              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep1Lead">Clean, balanced, classic</div>
+            </div>
+            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep1Desc">The Japanese pour-over rhythm. Bloom with a small pour (about 30g) for thirty seconds, then pour in three even rounds to 80% fill, waiting between each for the water to draw through. Produces a clear, balanced cup with sweetness and definition.</p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="cove-step-num">02</div>
+            <div>
+              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep2Title">Steep & Filter</div>
+              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep2Lead">Full-bodied, forgiving</div>
+            </div>
+            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep2Desc">Immersion-style brewing. Tip the grounds into your cup, pour in hot water to the recommended weight, and stir gently. Steep for about two minutes, then pass the liquid back through the empty bag as a filter. Rounder mouthfeel, richer body — forgiving of timing.</p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="cove-step-num">03</div>
+            <div>
+              <div class="font-heading text-[13px] tracking-[0.22em] uppercase font-light text-ink-95" data-i18n="brewStep3Title">Quick Brew</div>
+              <div class="font-heading italic text-[14px] tracking-[0.06em] text-ink-60 mt-1.5" data-i18n="brewStep3Lead">Simplest, light-bodied</div>
+            </div>
+            <p class="font-heading text-[15px] leading-[1.9] tracking-[0.02em] text-ink-60 font-light" data-i18n="brewStep3Desc">The everyday method. Set the bag over your cup and fill with hot water. As the level drops, top it up again; continue until you've used 180–200g of water in total. Let the final pour drain fully before lifting the bag. Light, smooth, unfussy.</p>
+          </div>
+        </div>
+        <div class="mt-12 pt-6 border-t border-ink-40 flex justify-center">
+          <p class="font-heading text-[11px] tracking-[0.28em] uppercase text-ink-60 font-light" data-i18n="brewNote">Water 180–200g · Temperature 90–95°C · Grounds 10–12g</p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="cove-reveal py-20 pb-28 lg:pb-20 border-t border-ink-40">
+        <div class="border-b border-ink-40 pb-4">
+          <h1 class="font-heading text-[13px] tracking-[0.22em] uppercase font-light" data-i18n="contactTitle">Contact</h1>
         </div>
         <!-- 中英文各一區：顯示由 html[data-cove-lang] 控制；電話／電郵由 app.js 從 config 寫入 -->
         <div
           id="contact-body"
-          class="mt-8 font-heading text-[14px] leading-relaxed tracking-[0.10em] text-ink-95/90 notranslate"
+          class="mt-8 font-heading text-[17px] leading-[1.9] tracking-[0.02em] text-ink-95/90 font-light notranslate"
           translate="no"
         >
           <div class="cove-contact-zh">
@@ -292,14 +416,44 @@
       </section>
     </main>
 
-    <footer id="sales-policy-footer" class="border-t border-ink-40 bg-[#1A1A1A] hidden">
-      <div class="mx-auto max-w-6xl px-4 py-10 pb-28 lg:pb-10">
-        <div class="max-w-2xl">
-          <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60" data-i18n="footerSales">Sales policy</div>
-          <div
-            id="footer-disclaimer"
-            class="mt-2 flex flex-col gap-2 text-[11px] leading-relaxed text-ink-60 [&>p]:m-0"
-          ></div>
+    <footer id="sales-policy-footer" class="border-t border-ink-40 bg-[#1A1A1A]">
+      <div class="mx-auto max-w-6xl px-4 py-16 pb-28 lg:pb-16">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <!-- Brand -->
+          <div class="md:col-span-5 flex flex-col gap-4">
+            <div class="flex items-center gap-3 text-ink-95">
+              <svg viewBox="0 0 40 40" class="h-7 w-7" aria-hidden="true">
+                <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.7" fill="none" stroke-linecap="round"/>
+              </svg>
+              <span class="font-display text-[16px] tracking-[0.38em] font-thin">COVE</span>
+            </div>
+            <p class="font-heading text-[16px] leading-[1.85] tracking-[0.02em] text-ink-60 max-w-sm font-light" data-i18n="footerTagline">Simple coffee, done well. Find your cove — anywhere, anytime.</p>
+          </div>
+
+          <!-- Explore -->
+          <div class="md:col-span-3">
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-60 mb-4" data-i18n="footerExplore">Explore</div>
+            <ul class="flex flex-col gap-2 text-[12px] text-ink-95/80">
+              <li><a href="#shop" class="hover:text-ink-95 transition-colors" data-i18n="navShop">Shop</a></li>
+              <li><a href="#brew" class="hover:text-ink-95 transition-colors" data-i18n="brewTitle">How to Brew</a></li>
+              <li><a href="#about" class="hover:text-ink-95 transition-colors" data-i18n="navAbout">About</a></li>
+              <li><a href="#contact" class="hover:text-ink-95 transition-colors" data-i18n="navContact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Sales policy -->
+          <div class="md:col-span-4">
+            <div class="text-[10px] tracking-[0.24em] uppercase text-ink-60 mb-4" data-i18n="footerSales">Sales policy</div>
+            <div
+              id="footer-disclaimer"
+              class="flex flex-col gap-2 text-[11px] leading-relaxed text-ink-60 [&>p]:m-0"
+            ></div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-ink-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] tracking-[0.2em] uppercase text-ink-60">
+          <div>© <span id="footer-year">2026</span> COVE · <span data-i18n="footerRights">All rights reserved</span></div>
         </div>
       </div>
     </footer>
@@ -311,7 +465,7 @@
           <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60"><span data-i18n="mobilePacks">Packs</span> <span id="cart-mobile-units" class="text-ink-95 tabular">0</span></div>
           <div id="cart-mobile-total" class="mt-1 text-[14px] tracking-[0.12em] tabular">HK$0</div>
         </div>
-        <button id="btn-checkout-mobile" type="button" class="border border-ink-40 bg-ink-20 px-5 py-3 text-[12px] tracking-[0.22em] uppercase hover:bg-ink-30 transition-colors" data-i18n="cartCheckout">Checkout</button>
+        <button id="btn-checkout-mobile" type="button" class="border border-ink-95 bg-ink-95 text-ink-10 px-6 py-3.5 text-[12px] tracking-[0.22em] uppercase hover:bg-white transition-colors font-medium" data-i18n="cartCheckout">Checkout</button>
       </div>
     </div>
 
@@ -471,10 +625,26 @@
                 </div>
               </div>
 
-              <button id="btn-submit-order" type="submit" class="w-full border border-ink-40 bg-ink-10 px-4 py-3 text-base tracking-[0.22em] uppercase hover:bg-ink-20 transition-colors" data-i18n="formSubmit">
+              <button id="btn-submit-order" type="submit" class="w-full border border-ink-95 bg-ink-95 text-ink-10 px-4 py-4 text-base tracking-[0.22em] uppercase hover:bg-white transition-colors font-medium" data-i18n="formSubmit">
                 Submit
               </button>
+              <p class="text-center text-[10px] tracking-[0.2em] uppercase text-ink-60 mt-2" data-i18n="formTrust">Secure · Encrypted · No card stored</p>
             </form>
+
+            <!-- SUCCESS STATE -->
+            <div id="checkout-success" class="hidden text-center py-8">
+              <svg viewBox="0 0 40 40" class="mx-auto h-14 w-14 text-ink-95" aria-hidden="true">
+                <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M 13 20 L 18 25 L 27 15" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="mt-6 font-heading text-[32px] font-light tracking-[0.08em] text-ink-95" data-i18n="successTitle">Thank you</div>
+              <div class="mt-3 text-[12px] tracking-[0.2em] uppercase text-ink-60" data-i18n="successSub">Your order is received</div>
+              <p class="mt-6 max-w-sm mx-auto text-[13px] leading-[1.8] text-ink-95/80" data-i18n="successBody">We'll confirm your order by WhatsApp or email shortly. Pour slow, sip slow.</p>
+              <div class="mt-8 text-[11px] tracking-[0.22em] uppercase text-ink-60">
+                <span data-i18n="chkOrder">Order</span> · <span id="success-order-id" class="tabular text-ink-95"></span>
+              </div>
+              <button id="btn-success-close" type="button" class="mt-10 border border-ink-40 hover:border-ink-95 px-7 py-3 text-[11px] tracking-[0.28em] uppercase text-ink-95 transition-colors" data-i18n="successClose">Close</button>
+            </div>
           </div>
         </div>
       </div>
@@ -484,7 +654,7 @@
       (function () {
         var isLocal =
           location.hostname === "127.0.0.1" || location.hostname === "localhost";
-        var v = isLocal ? String(Date.now()) : "20260407_1";
+        var v = isLocal ? String(Date.now()) : "20260418_3";
         window.__SHOP_V__ = v;
 
         function load(src) {
@@ -496,6 +666,26 @@
             document.body.appendChild(s);
           });
         }
+
+        // Scroll reveal + footer year
+        (function () {
+          var y = document.getElementById("footer-year");
+          if (y) y.textContent = String(new Date().getFullYear());
+          var els = document.querySelectorAll(".cove-reveal");
+          if (!("IntersectionObserver" in window)) {
+            els.forEach(function (el) { el.classList.add("is-in"); });
+          } else {
+            var io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-in");
+                  io.unobserve(e.target);
+                }
+              });
+            }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+            els.forEach(function (el) { io.observe(el); });
+          }
+        })();
 
         // Always load latest catalog locally to avoid cache.
         load("config.js")

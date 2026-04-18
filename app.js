@@ -159,48 +159,57 @@
         const img = String(p.imageUrl || "").trim();
         const media = img
           ? `
-            <div class="aspect-[16/10] bg-[#1a1a1a] overflow-hidden">
+            <div class="aspect-[4/5] bg-[#141414] overflow-hidden relative">
               <img src="${escapeAttr(
                 img
-              )}" alt="" loading="lazy" class="h-full w-full object-cover opacity-90 group-hover:opacity-100 transition" onerror="this.remove()" />
+              )}" alt="" loading="lazy" class="h-full w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-700" onerror="this.parentElement.remove()" />
             </div>
           `
+          : `
+            <div class="aspect-[4/5] bg-[#141414] overflow-hidden relative grid place-items-center">
+              <svg viewBox="0 0 40 40" class="h-10 w-10 text-ink-60" aria-hidden="true">
+                <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+                <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+          `;
+        const inCartBadge = q > 0
+          ? `<span class="absolute top-3 right-3 bg-ink-95 text-ink-10 text-[10px] tracking-[0.16em] uppercase px-2 py-1 font-medium">${q} ${escapeHtml(tt("inCart"))}</span>`
           : "";
         return `
-          <article class="group border border-[#222] bg-[#111]">
+          <article class="group cove-card border border-[#222] bg-[#111] relative">
+            ${inCartBadge}
             ${media}
-            <div class="p-5">
+            <div class="p-6">
               <div class="flex items-start justify-between gap-4">
-                <div class="min-w-0">
-                  <div class="truncate text-[13px] tracking-[0.14em] uppercase text-[#ededed]">${escapeHtml(
+                <div class="min-w-0 flex-1">
+                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:20px;letter-spacing:0.06em;color:#ededed">${escapeHtml(
                     pickName(p)
                   )}</div>
-                  <div class="mt-2 whitespace-pre-line text-[12px] leading-relaxed text-[#9a9a9a]">${escapeHtml(
+                  <div class="mt-1.5 text-[11px] tracking-[0.16em] text-[#666]">${escapeHtml(
+                    packGramLabel
+                  )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
+                    tt("packsSuffix")
+                  )}</div>
+                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:15px;line-height:1.85;letter-spacing:0.02em;color:#9a9a9a;margin-top:10px;white-space:pre-line">${escapeHtml(
                     pickDesc(p)
                   )}</div>
                 </div>
-                <div class="shrink-0 text-right">
-                  <div class="text-[12px] tracking-[0.12em] text-[#ededed]">${money(
-                    p.price
-                  )}</div>
-                      <div class="mt-1 text-[11px] text-[#777]">${escapeHtml(
-                        packGramLabel
-                      )} · ${Number(p.packs || cfg.unitPerQty || 10)} ${escapeHtml(
-                        tt("packsSuffix")
-                      )}</div>
-                </div>
               </div>
 
-              <div class="mt-6 flex items-center justify-between">
-                <div class="text-[11px] tracking-[0.16em] text-[#777]">${money(
-                  (p.price || 0) * q
-                )}</div>
-                <div class="flex items-center gap-2">
-                  <button class="h-9 w-9 border border-[#222] bg-[#0a0a0a] text-[#ededed] hover:bg-[#111] transition" data-act="dec" data-id="${escapeAttr(
+              <div class="mt-6 pt-5 border-t border-[#222] flex items-center justify-between gap-4">
+                <div>
+                  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:24px;line-height:1;letter-spacing:0.04em;color:#ededed;font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1">${money(
+                    p.price
+                  )}</div>
+                  ${q > 0 ? `<div class="mt-1.5 text-[11px] tracking-[0.14em] text-[#666]">${escapeHtml(tt("lineTotal"))} · ${money((p.price || 0) * q)}</div>` : ""}
+                </div>
+                <div class="flex items-center gap-0.5">
+                  <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition text-[16px] leading-none" data-act="dec" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Decrease">−</button>
-                  <div class="w-10 text-center text-[12px] text-[#ededed] tabular-nums">${q}</div>
-                  <button class="${incBtnClass}" data-act="inc" data-id="${escapeAttr(
+                  <div class="w-8 text-center text-[13px] tracking-[0.06em] text-[#ededed] tabular-nums" style="font-family:'Cormorant Garamond',Georgia,serif;font-variant-numeric:lining-nums">${q}</div>
+                  <button class="h-9 w-9 border border-[#2a2a2a] bg-[#0d0d0d] text-[#aaa] hover:text-[#ededed] hover:border-[#444] transition text-[16px] leading-none" data-act="inc" data-id="${escapeAttr(
                     p.id
                   )}" aria-label="Increase">+</button>
                 </div>
@@ -248,12 +257,31 @@
             ? I18N.tpl(tt("shipRuleAt"), { amt: money(freeAtAmount) })
             : `Free shipping at ${money(freeAtAmount)}`;
 
+    // Free-ship progress bar
+    var progWrap = $("cart-progress");
+    var progFill = $("cart-progress-fill");
+    if (progWrap && progFill) {
+      if (sub > 0 && sub < freeAtAmount) {
+        var pct = Math.min(100, Math.round((sub / freeAtAmount) * 100));
+        progFill.style.width = pct + "%";
+        progWrap.hidden = false;
+      } else {
+        progWrap.hidden = true;
+      }
+    }
+
     const list = $("cart-lines");
     if (!list) return;
     if (lines.length === 0) {
-      list.innerHTML = `<div class="py-10 text-center text-[12px] text-[#777]">${escapeHtml(
-        tt("cartEmpty")
-      )}</div>`;
+      list.innerHTML = `
+        <div class="py-10 text-center">
+          <svg viewBox="0 0 40 40" class="mx-auto h-8 w-8 text-ink-60/70 mb-4" aria-hidden="true">
+            <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+            <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
+          <div class="mt-2 text-[11px] text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
+        </div>`;
       if ($("btn-checkout")) $("btn-checkout").disabled = true;
       return;
     }
@@ -479,6 +507,21 @@
     const m = $("checkout");
     if (m) m.hidden = true;
     document.body.classList.remove("checkout-open");
+    // Restore modal children (reverse success-state hide)
+    const successEl = $("checkout-success");
+    const form = $("form-order");
+    if (form && successEl) {
+      const modalBody = form.closest(".p-6");
+      if (modalBody) {
+        Array.from(modalBody.children).forEach((child) => {
+          if (child === successEl) child.classList.add("hidden");
+          else child.classList.remove("hidden");
+        });
+      }
+    }
+    // Reset submit button label
+    const btn = $("btn-submit-order");
+    if (btn) btn.textContent = tt("formSubmit");
     renderShopRows();
   }
 
@@ -586,6 +629,8 @@
     openers.forEach((b) => b.addEventListener("click", openCheckout));
     if ($("btn-close-checkout"))
       $("btn-close-checkout").addEventListener("click", closeCheckout);
+    if ($("btn-success-close"))
+      $("btn-success-close").addEventListener("click", closeCheckout);
     if ($("checkout-backdrop"))
       $("checkout-backdrop").addEventListener("click", (e) => {
         if (e.target && e.target.id === "checkout-backdrop") closeCheckout();
@@ -679,13 +724,23 @@
             body: JSON.stringify(payload),
           });
           if (btn) btn.textContent = tt("formSent");
-          setTimeout(() => closeCheckout(), 600);
-          setTimeout(() => {
-            state.cart = {};
-            renderShopRows();
-            renderCart();
-            renderCartMobile();
-          }, 650);
+          // Show success state
+          const successEl = $("checkout-success");
+          const successOrderId = $("success-order-id");
+          if (successOrderId) successOrderId.textContent = state.orderId;
+          // Hide the form + summary + payment row, show success
+          const hideSelectors = ["#order-summary-display", "#form-order"];
+          const modalBody = form.closest(".p-6");
+          if (modalBody && successEl) {
+            Array.from(modalBody.children).forEach((child) => {
+              if (child !== successEl) child.classList.add("hidden");
+            });
+            successEl.classList.remove("hidden");
+          }
+          state.cart = {};
+          renderShopRows();
+          renderCart();
+          renderCartMobile();
         } catch (e) {
           console.error("Order submit failed:", e);
           if (btn) btn.textContent = tt("formFailed");

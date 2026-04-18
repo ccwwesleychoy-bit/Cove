@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 260 440 550" width="800" height="1000">
+  <defs>
+    <radialGradient id="bg-nutty" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#221A10"/>
+      <stop offset="100%" stop-color="#0F0D0A"/>
+    </radialGradient>
+    <radialGradient id="glow-nutty" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C4924A" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C4924A" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="bag-clip">
+      <rect x="280" y="300" width="240" height="340" rx="2"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#bg-nutty)"/>
+
+  <!-- Warm glow behind bag -->
+  <ellipse cx="400" cy="470" rx="200" ry="240" fill="url(#glow-nutty)"/>
+
+  <!-- ── Drip bag silhouette ── -->
+  <!-- Left ear tab -->
+  <path d="M 268 340 L 240 298 L 308 286 L 318 332" fill="none" stroke="#C4924A" stroke-width="0.9" stroke-linejoin="round"/>
+  <!-- Right ear tab -->
+  <path d="M 532 340 L 560 298 L 492 286 L 482 332" fill="none" stroke="#C4924A" stroke-width="0.9" stroke-linejoin="round"/>
+  <!-- Ear inner fold lines -->
+  <line x1="258" y1="316" x2="302" y2="308" stroke="#C4924A" stroke-width="0.5" stroke-opacity="0.5"/>
+  <line x1="542" y1="316" x2="498" y2="308" stroke="#C4924A" stroke-width="0.5" stroke-opacity="0.5"/>
+
+  <!-- Bag body outline -->
+  <rect x="278" y="332" width="244" height="346" rx="1.5" fill="#161108" stroke="#C4924A" stroke-width="0.9"/>
+
+  <!-- Top seal crease -->
+  <line x1="278" y1="358" x2="522" y2="358" stroke="#C4924A" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- Abstract nut motif — geometric walnut / golden section spiral -->
+  <!-- Outer oval -->
+  <ellipse cx="400" cy="490" rx="62" ry="74" fill="none" stroke="#C4924A" stroke-width="0.8" stroke-opacity="0.7"/>
+  <!-- Inner oval -->
+  <ellipse cx="400" cy="490" rx="38" ry="46" fill="none" stroke="#C4924A" stroke-width="0.6" stroke-opacity="0.5"/>
+  <!-- Vertical seam (walnut crease) -->
+  <line x1="400" y1="416" x2="400" y2="564" stroke="#C4924A" stroke-width="0.7" stroke-opacity="0.5"/>
+  <!-- Horizontal seam -->
+  <path d="M 342 490 Q 370 478 400 490 Q 430 502 458 490" fill="none" stroke="#C4924A" stroke-width="0.6" stroke-opacity="0.4"/>
+
+  <!-- Bottom fill line texture (craft paper feel) -->
+  <line x1="306" y1="630" x2="494" y2="630" stroke="#C4924A" stroke-width="0.4" stroke-opacity="0.2"/>
+  <line x1="306" y1="638" x2="494" y2="638" stroke="#C4924A" stroke-width="0.4" stroke-opacity="0.15"/>
+
+  <!-- ── Typography ── -->
+  <!-- Brand monogram top-left of bag -->
+  <svg x="294" y="370" viewBox="0 0 40 40" width="26" height="26">
+    <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="#C4924A" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-opacity="0.8"/>
+    <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="#C4924A" stroke-width="0.6" fill="none" stroke-linecap="round" stroke-opacity="0.6"/>
+  </svg>
+
+  <!-- Product name -->
+  <text x="400" y="578" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-size="38" font-weight="300" letter-spacing="10" text-anchor="middle" fill="#E8D5B8">Nutty</text>
+
+  <!-- Pack label -->
+  <text x="400" y="606" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-size="13" font-weight="300" letter-spacing="4" text-anchor="middle" fill="#C4924A" fill-opacity="0.75">12g · 10 packs</text>
+
+  <!-- Bottom hairline + brand -->
+  <line x1="340" y1="700" x2="460" y2="700" stroke="#C4924A" stroke-width="0.5" stroke-opacity="0.4"/>
+  <text x="400" y="724" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-size="16" font-weight="300" letter-spacing="8" text-anchor="middle" fill="#C4924A" fill-opacity="0.6">COVE</text>
+  <text x="400" y="746" font-family="'Cormorant Garamond', 'Times New Roman', serif" font-size="10" font-weight="300" letter-spacing="4" text-anchor="middle" fill="#C4924A" fill-opacity="0.35">SINGLE ORIGIN DRIP</text>
+
+  <!-- Outer border frame -->
+  <rect x="28" y="28" width="744" height="944" fill="none" stroke="#C4924A" stroke-width="0.5" stroke-opacity="0.18"/>
+  <rect x="36" y="36" width="728" height="928" fill="none" stroke="#C4924A" stroke-width="0.3" stroke-opacity="0.10"/>
+</svg>
