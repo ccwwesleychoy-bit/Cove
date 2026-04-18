@@ -279,8 +279,8 @@
             <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round"/>
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.4" fill="none" stroke-linecap="round"/>
           </svg>
-          <div class="text-[11px] tracking-[0.22em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
-          <div class="mt-2 text-[11px] text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
+          <div class="text-[12px] tracking-[0.22em] uppercase text-ink-60">${escapeHtml(tt("cartEmpty"))}</div>
+          <div class="mt-2 text-[12px] leading-relaxed text-ink-60/70">${escapeHtml(tt("cartEmptyHint"))}</div>
         </div>`;
       if ($("btn-checkout")) $("btn-checkout").disabled = true;
       return;
@@ -292,14 +292,14 @@
         return `
           <div class="flex items-start justify-between gap-3 py-3 border-b border-[#1a1a1a] last:border-b-0">
             <div class="min-w-0">
-              <div class="truncate text-[12px] tracking-[0.14em] uppercase text-[#ededed]">${escapeHtml(
+              <div class="truncate text-[13px] tracking-[0.14em] uppercase text-ink-95">${escapeHtml(
                 pickName(L.product)
               )}</div>
-              <div class="mt-1 text-[11px] text-[#777]">${money(
+              <div class="mt-1 text-[12px] text-ink-60">${money(
                 L.product.price
               )} · x${L.qty}</div>
             </div>
-            <div class="shrink-0 text-[12px] text-[#ededed] tabular-nums">${money(
+            <div class="shrink-0 text-[13px] text-ink-95 tabular-nums">${money(
               L.product.price * L.qty
             )}</div>
           </div>
