@@ -1,5 +1,5 @@
 window.SHOP_CONFIG = {
-  shopName: "Cove",
+  shopName: "Covey",
   tagline: "",
   unitPerQty: 10,
   // Shown under each product price, e.g. "12g · 10 packs" (weight first)
@@ -19,7 +19,7 @@ window.SHOP_CONFIG = {
   kpayUrl: "",
   // General enquiries (Contact section only — separate from FPS below).
   contactPhone: "90137619",
-  contactEmail: "covecoffeeinfo@gmail.com",
+  contactEmail: "coveycoffeeinfo@gmail.com",
   fpsId: "128799590",
   fpsNote: "Please put the Order ID in the transfer remark.",
   // Optional: Google Apps Script Web App URL. POST JSON includes paymentProofBase64 / Mime / FileName

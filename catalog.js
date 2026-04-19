@@ -2,7 +2,7 @@ window.SHOP_CATALOG = [
   {
     id: "drift-i",
     name: "Covey Nutty",
-    description: "Nutty Selection x 10",
+    description: "Nutty Selection × 10",
     packs: 10,
     nameZh: "Covey Nutty",
     descriptionZh: "堅果精選 × 10",
@@ -13,7 +13,7 @@ window.SHOP_CATALOG = [
   {
     id: "drift-iiii",
     name: "Covey Bloom",
-    description: "2 Fruity and Floral Selection x 5",
+    description: "Fruity & Floral Selection\n2 types × 5",
     packs: 10,
     nameZh: "Covey Bloom",
     descriptionZh: "2款花果精選 × 5",
