@@ -1,5 +1,5 @@
 /**
- * Cove 中英切換（繁體中文 UI；商品名稱沿用 catalog 英文）
+ * Covey 中英切換（繁體中文 UI；商品名稱沿用 catalog 英文）
  * localStorage key: cove-lang → "en" | "zh-Hant"
  */
 (function () {
@@ -9,7 +9,7 @@
 
   var STR = {
     en: {
-      siteTitle: "Cove",
+      siteTitle: "Covey",
       navShop: "Shop",
       navAbout: "About",
       navContact: "Contact",
@@ -40,7 +40,7 @@
       brewNote: "Water 180–200g · Temperature 90–95°C",
       inCart: "in cart",
       lineTotal: "Line",
-      cartEmptyHint: "Add a drip bag set to begin",
+      cartEmptyHint: "Add a drip bag to begin",
       footerTagline: "Good coffee, simply done.",
       footerExplore: "Explore",
       footerRights: "All rights reserved",
@@ -63,11 +63,11 @@
       shipRuleFree: "Free shipping applied",
       shipRuleAt: "Free shipping at {{amt}}",
       mobilePacks: "Packs",
-      aboutTitle: "About COVE",
-      about1: "COVE only does one thing: make good coffee simple.",
+      aboutTitle: "About COVEY",
+      about1: "COVEY only does one thing: make good coffee simple.",
       about2: "We select quality single origin beans and turn them into convenient drip bags.",
       about3: "So you can enjoy a good cup of coffee anywhere, anytime.",
-      about4: "Simple. Pure. COVE.",
+      about4: "Simple. Pure. COVEY.",
       contactTitle: "Contact",
       footerSales: "Sales policy",
       chkTitle: "Checkout",
@@ -105,13 +105,12 @@
       remarkTemplate:
         "Please put the Order ID in the transfer remark.\n(Remark: {{id}})",
       disclaimer:
-        "Orders will be shipped within 7 days after confirmation.\n\n" +
         "All sales are final once shipped.\n\n" +
         "As drip bags contain fresh roasted coffee, returns and refunds are not accepted except in cases of manufacturing defects or damage during delivery.\n\n" +
         "We appreciate your understanding.",
     },
     "zh-Hant": {
-      siteTitle: "Cove",
+      siteTitle: "Covey",
       navShop: "商店",
       navAbout: "關於",
       navContact: "聯絡",
@@ -142,7 +141,7 @@
       brewNote: "建議水量 180–200g · 水溫 90–95°C",
       inCart: "已加入",
       lineTotal: "小計",
-      cartEmptyHint: "選一款掛耳包組合開始",
+      cartEmptyHint: "選一款掛耳包開始",
       footerTagline: "好咖啡，不複雜。",
       footerExplore: "瀏覽",
       footerRights: "版權所有",
@@ -165,11 +164,11 @@
       shipRuleFree: "已享免運費",
       shipRuleAt: "滿 {{amt}} 免運費",
       mobilePacks: "包數",
-      aboutTitle: "關於 COVE",
-      about1: "COVE 只做一件事：讓好咖啡變得簡單。",
+      aboutTitle: "關於 COVEY",
+      about1: "COVEY 只做一件事：讓好咖啡變得簡單。",
       about2: "我們挑選優質單一產區咖啡豆，製成方便的掛耳包。",
       about3: "讓你在任何地方，都能輕鬆享受一杯好咖啡。",
-      about4: "簡單。純粹。COVE。",
+      about4: "簡單。純粹。COVEY。",
       contactTitle: "聯絡",
       footerSales: "銷售條款",
       chkTitle: "結帳",
@@ -205,7 +204,6 @@
       /** 訂單摘要預覽：對應 config.js 預設英文 fpsNote 那一行 */
       fpsNoteSummaryZh: "請於轉帳備註填寫訂單編號。",
       disclaimer:
-        "貨品將於訂單確認後 7 天內發送。\n\n" +
         "貨品寄出後，恕不接受退款或退換。\n\n" +
         "掛耳包內為新鮮烘焙咖啡，除製造瑕疵或運送損毀外，恕不接受退貨退款。\n\n" +
         "感謝你的理解。",
@@ -308,7 +306,7 @@
         "title",
         L === "zh-Hant"
           ? "切換為英文介面"
-          : "繁體中文請按此鈕，勿使用 Chrome／Edge「翻譯網頁」——會把 COVE 等字誤譯、版面變怪。"
+          : "繁體中文請按此鈕，勿使用 Chrome／Edge「翻譯網頁」——會把 COVEY 等字誤譯、版面變怪。"
       );
     }
   }

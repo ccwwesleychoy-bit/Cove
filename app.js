@@ -129,7 +129,7 @@
     const m = String(d.getMonth() + 1).padStart(2, "0");
     const day = String(d.getDate()).padStart(2, "0");
     const r = Math.random().toString(36).slice(2, 6).toUpperCase();
-    return "COVE-" + y + m + day + "-" + r;
+    return "COVEY-" + y + m + day + "-" + r;
   }
 
   /**
