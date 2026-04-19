@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260418_20">
+<html lang="en" translate="no" data-cove-build="20260418_22">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -228,18 +228,18 @@
 
     <main class="mx-auto max-w-6xl px-4">
       <!-- HOME -->
-      <section id="home" class="min-h-[calc(100vh-4rem)] grid place-items-center relative">
-        <div class="text-center select-none relative z-10 -translate-y-3 md:-translate-y-4">
-          <!-- Monogram above wordmark -->
-          <svg viewBox="0 0 40 40" class="mx-auto h-12 w-12 text-ink-95/90 mb-6" aria-hidden="true">
+      <section id="home" class="relative grid min-h-[calc(100vh-4rem)] place-items-center">
+        <div class="flex flex-col items-center gap-8 text-center select-none relative z-10">
+          <!-- Monogram（與以下區塊同一套 gap-8 間距） -->
+          <svg viewBox="0 0 40 40" class="h-12 w-12 shrink-0 text-ink-95/90" aria-hidden="true">
             <path d="M 28 10 A 12 12 0 1 0 28 30" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
             <path d="M 24 17 A 4 4 0 1 0 24 23" stroke="currentColor" stroke-width="0.6" fill="none" stroke-linecap="round"/>
           </svg>
 
-          <div class="mb-6 text-[12px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
+          <div class="text-[12px] tracking-[0.32em] uppercase text-ink-60" data-i18n="heroKicker">Coffee Drip Bag</div>
 
-          <!-- Wordmark：Raleway Thin (100)；上下留白對稱 -->
-          <div class="cove-hero-wordmark flex flex-col items-center text-[clamp(56px,9vw,118px)] leading-none py-7">
+          <!-- Wordmark：Raleway Thin (100)；字級為原 clamp 的 120% -->
+          <div class="cove-hero-wordmark flex flex-col items-center text-[clamp(67px,10.8vw,142px)] leading-none">
             <div class="mx-auto inline-grid grid-cols-4 gap-x-[0.18em] leading-none">
               <span class="text-center">C</span>
               <span class="text-center">O</span>
@@ -248,62 +248,27 @@
             </div>
           </div>
 
-          <!-- Hairline divider -->
-          <div class="mx-auto mt-0 h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
-
-          <div class="mt-5 text-[12px] tracking-[0.28em] uppercase text-ink-60">
-            <div class="mx-auto flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-1">
-              <span data-i18n="heroTag1">Simple brew</span>
-              <span class="text-ink-95/70" aria-hidden="true">·</span>
-              <span data-i18n="heroTag2">Easy enjoy</span>
+          <!-- 髮線與標語同一組：與 COVE 之間只佔一個 gap-8，避免雙倍間距 -->
+          <div class="flex flex-col items-center gap-3 shrink-0">
+            <div class="h-px w-16 bg-ink-60/60" aria-hidden="true"></div>
+            <div class="text-[12px] tracking-[0.28em] uppercase text-ink-60">
+              <div class="mx-auto flex flex-wrap items-center justify-center gap-x-[0.35em] gap-y-1">
+                <span data-i18n="heroTag1">Simple brew</span>
+                <span class="text-ink-95/70" aria-hidden="true">·</span>
+                <span data-i18n="heroTag2">Easy enjoy</span>
+              </div>
             </div>
           </div>
 
-          <!-- Primary CTA -->
-          <a href="#shop" class="group mt-10 inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[12px] tracking-[0.24em] uppercase text-ink-95 transition-colors">
+          <a href="#shop" class="group inline-flex items-center gap-3 border border-ink-40 hover:border-ink-95 bg-transparent px-7 py-3.5 text-[12px] tracking-[0.24em] uppercase text-ink-95 transition-colors">
             <span data-i18n="heroCta">Shop Collection</span>
             <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
           </a>
         </div>
       </section>
 
-      <!-- FEATURES / TRUST STRIP -->
-      <section aria-label="Features" class="cove-reveal py-12 border-y border-ink-40">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div class="cove-feature flex flex-col items-center gap-2">
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M3 7h13l3 4v6h-3m-10 0H3V7zm10 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featShipTitle">Free Shipping</div>
-            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featShipSub">Orders over HK$240</div>
-          </div>
-          <div class="cove-feature flex flex-col items-center gap-2">
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5l-2.1 2.1M8.6 15.4l-2.1 2.1m12 0l-2.1-2.1M8.6 8.6L6.5 6.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featFreshTitle">Freshly Roasted</div>
-            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featFreshSub">Packed within 5 days of roasting</div>
-          </div>
-          <div class="cove-feature flex flex-col items-center gap-2">
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featPayTitle">Secure Payment</div>
-            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featPaySub">PayMe · FPS</div>
-          </div>
-          <div class="cove-feature flex flex-col items-center gap-2">
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M6 3v3a6 6 0 1 0 12 0V3M8 21h8m-4-6v6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featOriginTitle">Single Origin</div>
-            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featOriginSub">New lots often</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SHOP -->
-      <section id="shop" class="cove-reveal py-20">
+      <!-- SHOP（緊接 Hero 下方，方便預覽） -->
+      <section id="shop" class="cove-reveal py-16 md:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div class="lg:col-span-8">
             <div class="flex items-end justify-between border-b border-ink-40 pb-4">
@@ -341,6 +306,41 @@
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <!-- FEATURES / TRUST STRIP -->
+      <section aria-label="Features" class="cove-reveal py-12 border-y border-ink-40">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M3 7h13l3 4v6h-3m-10 0H3V7zm10 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featShipTitle">Free Shipping</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featShipSub">Orders over HK$240</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5l-2.1 2.1M8.6 15.4l-2.1 2.1m12 0l-2.1-2.1M8.6 8.6L6.5 6.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featFreshTitle">Freshly Roasted</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featFreshSub">Packed within 5 days of roasting</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featPayTitle">Secure Payment</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featPaySub">PayMe · FPS</div>
+          </div>
+          <div class="cove-feature flex flex-col items-center gap-2">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-ink-95/80" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M6 3v3a6 6 0 1 0 12 0V3M8 21h8m-4-6v6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="font-heading cove-feature-title uppercase text-ink-95" data-i18n="featOriginTitle">Single Origin</div>
+            <div class="font-heading cove-feature-sub text-ink-60" data-i18n="featOriginSub">New lots often</div>
+          </div>
         </div>
       </section>
 
@@ -667,7 +667,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260418_20");
+        var v = isLocal ? String(Date.now()) : (build || "20260418_22");
         window.__SHOP_V__ = v;
 
         function load(src) {
