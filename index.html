@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260419_4">
+<html lang="en" translate="no" data-cove-build="20260419_6">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -369,11 +369,8 @@
               <div data-i18n="about3">
                 So you can enjoy a good cup of coffee anywhere, anytime.
               </div>
+              <div data-i18n="about4">Simple. Pure. COVEY.</div>
             </div>
-            <!-- Hairline -->
-            <div class="mt-8 mb-6 h-px w-16 bg-ink-60/50"></div>
-            <!-- Closing line — pull-quote treatment -->
-            <div class="font-heading text-[17px] leading-[1.9] tracking-[0.02em] font-light text-ink-95/90" data-i18n="about4">Simple. Pure. COVEY.</div>
           </div>
         </div>
       </section>
@@ -667,7 +664,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260419_4");
+        var v = isLocal ? String(Date.now()) : (build || "20260419_6");
         window.__SHOP_V__ = v;
 
         function load(src) {
