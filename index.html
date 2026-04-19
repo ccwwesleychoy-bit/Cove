@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260419_3">
+<html lang="en" translate="no" data-cove-build="20260419_4">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -345,7 +345,7 @@
       </section>
 
       <!-- ABOUT -->
-      <section id="about" class="cove-reveal py-20">
+      <section id="about" class="cove-reveal pt-8 pb-20 md:pt-10 md:pb-24">
         <div class="border-b border-ink-40 pb-4">
           <h1 class="font-heading text-[14px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVEY</h1>
         </div>
@@ -667,7 +667,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260419_3");
+        var v = isLocal ? String(Date.now()) : (build || "20260419_4");
         window.__SHOP_V__ = v;
 
         function load(src) {
