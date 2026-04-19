@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- translate="no"：避免 Chrome／Edge 整頁翻譯破壞 COVE 拆字與本站 i18n；繁中請按導覽列「中」。 -->
 <!-- 每次上傳到主機：請把 data-cove-build 改成新字串，否則訪客可能仍載入舊的 app.js／i18n.js／catalog.js，畫面會和本機不一致。 -->
-<html lang="en" translate="no" data-cove-build="20260419_2">
+<html lang="en" translate="no" data-cove-build="20260419_3">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -347,7 +347,7 @@
       <!-- ABOUT -->
       <section id="about" class="cove-reveal py-20">
         <div class="border-b border-ink-40 pb-4">
-          <h1 class="font-heading text-[14px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVE</h1>
+          <h1 class="font-heading text-[14px] tracking-[0.22em] uppercase font-light" data-i18n="aboutTitle">About COVEY</h1>
         </div>
 
         <div class="mt-10 grid lg:grid-cols-12 gap-10 items-start">
@@ -362,18 +362,18 @@
           <!-- Copy column — first three lines preserved exactly -->
           <div class="lg:col-span-8 max-w-2xl">
             <div class="flex flex-col gap-6 font-heading text-[17px] leading-[1.9] tracking-[0.02em] text-ink-95/90">
-              <div data-i18n="about1">COVE is about simple coffee, done well.</div>
+              <div data-i18n="about1">COVEY only does one thing: make good coffee simple.</div>
               <div data-i18n="about2">
-                We select quality single origin coffees and pack them into easy drip bags.
+                We select quality single origin beans and turn them into convenient drip bags.
               </div>
               <div data-i18n="about3">
-                So you can enjoy a good cup in your own little cove — anywhere, anytime.
+                So you can enjoy a good cup of coffee anywhere, anytime.
               </div>
             </div>
             <!-- Hairline -->
-            <div class="mt-10 mb-8 h-px w-16 bg-ink-60/50"></div>
+            <div class="mt-8 mb-6 h-px w-16 bg-ink-60/50"></div>
             <!-- Closing line — pull-quote treatment -->
-            <div class="font-heading text-[17px] leading-[1.9] tracking-[0.02em] font-light text-ink-95/90" data-i18n="about4">Simple. Pure. COVE.</div>
+            <div class="font-heading text-[17px] leading-[1.9] tracking-[0.02em] font-light text-ink-95/90" data-i18n="about4">Simple. Pure. COVEY.</div>
           </div>
         </div>
       </section>
@@ -667,7 +667,7 @@
           build = (document.documentElement.getAttribute("data-cove-build") || "").trim();
         } catch (e) {}
         /* 正式站：用 html 上的 data-cove-build 當 query，上傳新檔後請遞增，否則易讀到快取的舊 JS */
-        var v = isLocal ? String(Date.now()) : (build || "20260419_2");
+        var v = isLocal ? String(Date.now()) : (build || "20260419_3");
         window.__SHOP_V__ = v;
 
         function load(src) {
