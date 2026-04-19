@@ -25,5 +25,5 @@ window.SHOP_CONFIG = {
   // Optional: Google Apps Script Web App URL. POST JSON includes paymentProofBase64 / Mime / FileName
   // (入數截圖). See order-email-handler.example.gs to attach the image in Gmail.
   orderEndpoint:
-    "https://script.google.com/macros/s/AKfycbxF6Q7Glv1jU4kGPdNyuA--hfzKtkOeV50dTa341AswGQgwr6ZxjN3OZ_wmSD8mlCLQqA/exec",
+    "https://script.google.com/macros/s/AKfycbxBXLq-8PUGS4HuNnWXMGLEkRnaHx-V3-bwAwJXJwAXJ8V7EPs1f-ClxVeLHESNTsvWIw/exec",
 };
